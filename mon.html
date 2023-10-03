@@ -1,0 +1,339 @@
+// Deduct the transfer amount from the sender's balance
+sender.balance -= amount;
+await sender.save();
+
+ // Description for sender's transaction
+ const senderTransactionDescription = `International Wire transfer of $${amount}. to ${beneficiary}<br>Account Number: ${receiver.accountNumber}`;
+
+ // Description for receiver's transaction
+ const receiverTransactionDescription = `Received from $${sender.accountNumber}, amount received ${amount}`; 
+
+await addTransaction(sender, 'Debit', senderTransactionDescription, amount);
+
+// Add a Credit transaction to receiver's history
+await addTransaction(receiver, 'Credit', receiverTransactionDescription, amount);
+
+req.flash('success', 'Transaction successful');
+return res.redirect('/wire')
+
+
+
+app.post("/wire", async (req, res) => {
+    
+    const { senderAccountNumber, beneficiary, receiverAccountNumber, account_type, bank_name, branch_name, country, routenumber, amount, reason, pinnumber, } = req.body;
+
+    const wireTransferDetails = {
+        senderAccountNumber,
+        beneficiary,
+        receiverAccountNumber,
+        account_type,
+        bank_name,
+        branch_name,
+        country,
+        routenumber,
+        amount,
+        reason,
+        pinnumber,
+    };
+
+    req.session.wireTransferDetails = wireTransferDetails;
+
+    const session = await mongoose.startSession();
+    session.startTransaction();
+
+    try{
+        const sender = await authenticateUser(senderAccountNumber,);
+
+        if (!sender) {
+        req.flash('error', 'Authentication failed');
+        res.redirect('/wire')
+        }
+        req.session.sender = sender;
+        console.log('Sender Object:', sender);
+
+        const receiver = await findReceiverByAccountNumber(receiverAccountNumber);
+
+        if (!receiver) {
+            req.flash('error', 'Invalid receiver account number');
+            return res.redirect('/wire')
+        }
+        req.session.receiver = receiver;
+
+
+         // Log sender's balance and transfer amount for debugging
+        console.log('Sender balance:', sender.balance);
+        console.log('Transfer amount:', amount);
+
+
+       // Check if the sender has sufficient balance
+       if (sender.balance < amount) {
+        req.flash('error', 'Insufficient Funds');
+        return res.redirect('/wire')
+
+    }
+
+    session.endSession(); // End the transaction session
+    res.redirect('/code3');
+} catch (e) {
+        console.error(e);
+        session.endSession(); // End the transaction session on error
+        res.json({ error: 'An error occurred' });
+    }
+
+
+        
+        
+});
+
+app.post('/code3', async (req, res) => {
+        const { taxNumber} = req.body;
+
+        const sender = req.session.sender;
+
+        if (!sender || sender.taxNumber !== taxNumber) {
+            req.flash('error', 'Invalid Code');
+            return res.redirect('/code3')
+            }
+    
+        res.redirect('/code4');
+});
+
+
+app.post('/code4', async (req, res) => {
+    const { aptNumber} = req.body;
+
+        // Get the user's code for the account initiating the transfer
+    const sender = req.session.sender;
+    console.log('Sender Object:', sender);
+
+
+    if (!sender || sender.aptNumber !== aptNumber) {
+        req.flash('error', 'Invalid Code');
+        return res.redirect('/code4')    
+    }
+
+    res.redirect("/code5");
+});
+
+
+app.post('/code5', async (req, res) => {
+    const { nrtNumber} = req.body;
+
+    const sender = req.session.sender;
+    console.log('Sender Object:', sender);
+
+
+    if (!(sender instanceof collection)) {
+        console.error('Invalid sender object:', sender);
+        req.flash('error', 'Invalid sender object');
+        return res.redirect('/code5'); // Handle the error by redirecting, for example.
+    }
+   
+
+    if (typeof sender === 'string' && sender.hasOwnProperty('nrtNumber')) {
+        if (sender.nrtNumber !== nrtNumber) {
+            req.flash('error', 'Invalid Code');
+            return res.redirect('/code5');
+        }
+    } else {
+        console.error('Invalid sender:', sender);
+        req.flash('error', 'Invalid sender');
+        return res.redirect('/code5');
+    }
+
+    // Retrieve wire transfer details and receiver information from the session
+    const wireTransferDetails = req.session.wireTransferDetails;
+    const receiver = await collection.findOne({ accountNumber: wireTransferDetails.receiverAccountNumber });
+
+    if (!receiver) {
+        return res.json({ error: 'Invalid receiver account number' });
+    }
+
+    // Deduct the transfer amount from the sender's balance
+    sender.balance -= wireTransferDetails.amount;
+    await sender.save();
+
+     // Description for sender's transaction
+     const senderTransactionDescription = `International Wire transfer of $${wireTransferDetails.amount}. to ${wireTransferDetails.beneficiary}<br>Account Number: ${receiver.accountNumber}`;
+
+     // Description for receiver's transaction
+     const receiverTransactionDescription = `Received from $${sender.accountNumber}, amount received $${wireTransferDetails.amount}`;
+ 
+     // Add Debit transaction to sender's history
+     await addTransaction(sender, 'Debit', senderTransactionDescription, wireTransferDetails.amount);
+ 
+     // Add Credit transaction to receiver's history
+     await addTransaction(receiver, 'Credit', receiverTransactionDescription, wireTransferDetails.amount);
+ 
+
+    req.flash('success', 'Transaction successful');
+    res.redirect('/preview');
+});
+
+
+
+
+
+
+app.post("/wire", async (req, res) => {
+    
+    const { senderAccountNumber, beneficiary, receiverAccountNumber, account_type, bank_name, branch_name, country, routenumber, amount, reason, pinnumber, } = req.body;
+
+    const wireTransferDetails = {
+        senderAccountNumber,
+        beneficiary,
+        receiverAccountNumber,
+        account_type,
+        bank_name,
+        branch_name,
+        country,
+        routenumber,
+        amount,
+        reason,
+        pinnumber,
+    };
+
+    req.session.wireTransferDetails = wireTransferDetails;
+
+    const session = await mongoose.startSession();
+    session.startTransaction();
+
+    try{
+        const sender = await authenticateUser(senderAccountNumber,);
+
+        if (!sender) {
+        req.flash('error', 'Authentication failed');
+        return res.redirect('/wire')
+        }
+        console.log('Sender Object:', sender);
+
+        const receiver = await findReceiverByAccountNumber(receiverAccountNumber);
+
+        if (!receiver) {
+            req.flash('error', 'Invalid receiver account number');
+            return res.redirect('/wire')
+        }
+
+
+         // Log sender's balance and transfer amount for debugging
+        console.log('Sender balance:', sender.balance);
+        console.log('Transfer amount:', amount);
+
+
+       // Check if the sender has sufficient balance
+       if (sender.balance < amount) {
+        req.flash('error', 'Insufficient Funds');
+        return res.redirect('/wire')
+
+    }
+    const queryString = `?senderAccountNumber=${senderAccountNumber}&beneficiary=${beneficiary}&receiverAccountNumber=${receiverAccountNumber}&account_type=${account_type}&bank_name=${bank_name}&branch_name=${branch_name}&country=${country}&routenumber=${routenumber}&amount=${amount}&reason=${reason}&pinnumber=${pinnumber}`;
+
+    // session.endSession(); // End the transaction session
+    res.redirect(`/code3${queryString}`);
+} catch (e) {
+        console.error(e);
+        // session.endSession(); // End the transaction session on error
+        res.json({ error: 'An error occurred' });
+    }        
+        
+});
+
+app.post('/code3', async (req, res) => {
+        const { taxNumber} = req.body;
+
+        const senderAccountNumber = req.query.senderAccountNumber; // Retrieve data from URL parameters
+        try {
+            const sender = await collection.findOne({ taxNumber });
+
+            if (!sender) {
+                req.flash('error', 'Invalid Code');
+                return res.redirect('/code3')
+                }
+
+    
+            // Redirect to code4 with necessary data in query parameters
+            const queryString = `?senderAccountNumber=${senderAccountNumber}&aptNumber=${sender.aptNumber}`;
+            res.redirect(`/code4${queryString}`);
+        } catch (e) {
+            console.error(e);
+            res.json({ error: 'An error occurred' });
+        }
+});
+
+
+app.post('/code4', async (req, res) => {
+    const { aptNumber} = req.body;
+
+    const { senderAccountNumber, receiverAccountNumber, amount, beneficiary } = req.query; // Retrieve data from URL parameters
+
+    try {
+        const sender = await collection.findOne({ aptNumber });
+
+        if (!sender) {
+            req.flash('error', 'Invalid Code');
+            return res.redirect('/code4')    
+        }
+
+        // const receiver = await findReceiverByAccountNumber(receiverAccountNumber);
+
+        // if (!receiver) {
+        //     req.flash('error', 'Invalid receiver account number');
+        //     return res.redirect('/code4');
+        // }
+
+        // Redirect to code5 with necessary data in query parameters
+        const queryString = `?senderAccountNumber=${senderAccountNumber}&nrtNumber=${sender.nrtNumber}&receiverAccountNumber=${receiverAccountNumber}&amount=${amount}&beneficiary=${beneficiary}`;
+        res.redirect(`/code5${queryString}`);
+    } catch (e) {
+        console.error(e);
+        res.json({ error: 'An error occurred' });
+    }
+
+});
+
+
+app.post('/code5', async (req, res) => {
+    const { nrtNumber} = req.body;
+
+    const { senderAccountNumber, receiverAccountNumber, amount, beneficiary } = req.query; // Retrieve data from URL parameters
+
+    try {
+        const sender = await authenticateUser(senderAccountNumber,);
+        // const sender = await collection.findOne({ nrtNumber });
+
+
+        if (!sender || sender.nrtNumber !== nrtNumber) {
+            req.flash('error', 'Invalid Code');
+            return res.redirect('/code5');
+        }
+
+        // const receiver = await findReceiverByAccountNumber(receiverAccountNumber);
+
+        // if (!receiver) {
+        //     req.flash('error', 'Invalid receiver account number');
+        //     return res.redirect('/code5');
+        // }
+
+        // Deduct the transfer amount from the sender's balance
+        sender.balance -= amount;
+        await sender.save();
+
+        // Description for sender's transaction
+        const senderTransactionDescription = `International Wire transfer of $${amount}. to ${beneficiary}. Account Number: ${receiver.accountNumber}`;
+
+        // Description for receiver's transaction
+        const receiverTransactionDescription = `Received from $${senderAccountNumber}, amount received $${amount}`;
+
+        // Add Debit transaction to sender's history
+        await addTransaction(sender, 'Debit', senderTransactionDescription, amount);
+
+        // Add Credit transaction to receiver's history
+        await addTransaction(receiver, 'Credit', receiverTransactionDescription, amount);
+
+        req.flash('success', 'Transaction successful');
+        res.redirect('/preview');
+    } catch (e) {
+        console.error(e);
+        res.json({ error: 'An error occurred' });
+    }
+});

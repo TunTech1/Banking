@@ -1,0 +1,1056 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta name="description" content="">
+	<meta name="author" content="">
+	<link rel="icon" href="assets/image/logo.png">
+
+	<title>Monumental Trust Bank Plc |     Transfer preview</title>
+
+	<!-- Fonts -->
+	<link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,500,700&amp;subset=latin-ext" rel="stylesheet">
+
+	<!-- CSS - REQUIRED - START -->
+	<!-- Batch Icons -->
+	<link rel="stylesheet" href="dashassets/fonts/batch-icons/css/batch-icons.css">
+	<!-- Bootstrap core CSS -->
+	<link rel="stylesheet" href="dashassets/css/bootstrap/bootstrap.min.css">
+	<!-- Material Design Bootstrap -->
+	<link rel="stylesheet" href="dashassets/css/bootstrap/mdb.min.css"> 
+	 <script src="dashassets/js/countries.js"></script>
+	<!-- Custom Scrollbar -->
+	<link rel="stylesheet" href="dashassets/plugins/custom-scrollbar/jquery.mCustomScrollbar.min.css">
+	<!-- Hamburger Menu -->
+	<link rel="stylesheet" href="dashassets/css/hamburgers/hamburgers.css">
+
+    <link rel="stylesheet" type="text/css" href="assets/user/css/toastr.min.css">
+	<!-- CSS - REQUIRED - END -->
+
+	<!-- CSS - OPTIONAL - START -->
+	<!-- Font Awesome -->
+	<link rel="stylesheet" href="dashassets/fonts/font-awesome/css/font-awesome.min.css">
+	<!-- JVMaps -->
+	<link rel="stylesheet" href="dashassets/plugins/jvmaps/jqvmap.min.css">
+	<!-- CSS - OPTIONAL - END -->
+
+	<!-- QuillPro Styles -->
+	<link rel="stylesheet" href="dashassets/css/quillpro/quillpro.css">
+
+    <script type="text/javascript">window.$crisp=[];window.CRISP_WEBSITE_ID="6b84b802-d974-4896-92e5-a177f4d49a66";(function(){d=document;s=d.createElement("script");s.src="https://client.crisp.chat/l.js";s.async=1;d.getElementsByTagName("head")[0].appendChild(s);})();</script>
+
+
+	<style type="text/css">
+	.nosamepass {
+  display: none;
+}
+	</style>
+	<style>
+#myProgress {
+  width: 100%;
+  background-color: #ddd;
+}
+
+#myBar {
+  width: 10%;
+  height: 30px;
+  background-color: #4CAF50;
+  text-align: center;
+  line-height: 30px;
+  color: white;
+}
+
+.progress {
+  width: 700px;
+
+  height: 30px;
+
+
+}
+
+
+ .h3{
+  color:green;
+}
+.h4{
+  color:grey;
+  text-decoration: underline;
+
+}
+
+
+.meter {
+	height: 50px;  /* Can be anything */
+border-radius:20px;
+	background: black;
+	padding: 10px;
+	box-shadow: inset 0 -1px 1px rgba(255,255,255,0.3);
+}
+
+.meter > span {
+  display: block;
+  height: 100%;
+  border-radius: 20px;
+  background-color: rgb(43,194,83);
+}
+
+</style>
+</head>
+
+<body>
+
+	<div class="container-fluid">
+		<div class="row">
+			<nav id="sidebar" class="px-0 bg-dark bg-gradient sidebar">
+				<ul class="nav nav-pills flex-column">
+					<li class="logo-nav-item">
+						<a class="navbar-brand" href="#">
+							<img src="assets/image/logo.png" width="145" height="32.3" alt="QuillPro">
+						</a>
+
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link " href="/index">
+							<i class="batch-icon batch-icon-browser-alt"></i>
+							Dashboard <span class="sr-only">(current)</span>
+						</a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link" href="/domestic">
+							<i class="batch-icon batch-icon-users"></i>
+							Domestic Transfer
+						</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="/local">
+							<i class="batch-icon batch-icon-key"></i>
+							Local Transfer
+						</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="/wire">
+							<i class="batch-icon batch-icon-refresh"></i>
+							International Transfer
+						</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="/history">
+							<i class="batch-icon batch-icon-safe"></i>
+							Transaction History
+						</a>
+					</li>
+
+
+					<li class="nav-item">
+						<a class="nav-link" href="/statement">
+							<i class="batch-icon batch-icon-user-card"></i>
+							Account Statement
+						</a>
+					</li>
+		<li class="nav-item">
+						<a class="nav-link" href="/profile">
+							<i class="batch-icon batch-icon-user"></i>
+							My Profile
+						</a>
+					</li>
+
+
+						<li class="nav-item">
+						<a class="nav-link" href="/settings">
+							<i class="batch-icon batch-icon-settings"></i>
+							Account Settings
+						</a>
+					</li>
+
+						<li class="nav-item">
+						<a class="nav-link" href="/contact">
+							<i class="batch-icon batch-icon-support"></i>
+							Contact Us
+						</a>
+					</li>
+
+						<li class="nav-item">
+						<a class="nav-link" href="/logout?_method=DELETE"  onclick="event.preventDefault();
+                                        document.getElementById('logout').submit();">
+							<i class="batch-icon batch-icon-locked"></i>
+							Logout
+						</a>
+						<form id="logout" action="/logout?_method=DELETE" method="POST">
+              <input type="hidden" name="_token" value="">                            
+            </form>
+					</li>
+
+				</ul>
+
+
+
+
+			</nav>
+
+			<div class="right-column">
+
+    <div>
+
+ 
+</div>
+   <iframe src="https://www.exchangerates.org.uk/widget/ER-LRTICKER.php?w=1100&amp;s=1&amp;mc=GBP&amp;mbg=F0F0F0&amp;bs=yes&amp;bc=000044&amp;f=verdana&amp;fs=10px&amp;fc=000044&amp;lc=000044&amp;lhc=FE9A00&amp;vc=FE9A00&amp;vcu=008000&amp;vcd=FF0000&amp;" width="100%" height="30" frameborder="0" scrolling="no" marginwidth="0" marginheight="0"></iframe>
+
+    				<nav class="navbar navbar-expand-lg navbar-light bg-white">
+					<a class="navbar-brand d-block d-sm-block d-md-block d-lg-none" href="#">
+						<img src="assets/image/logo.png" width="145" height="32.3" alt="QuillPro">
+					</a>
+					<button class="hamburger hamburger--slider" type="button" data-target=".sidebar" aria-controls="sidebar" aria-expanded="false" aria-label="Toggle Sidebar">
+						<span class="hamburger-box">
+							<span class="hamburger-inner"></span>
+						</span>
+					</button>
+					<!-- Added Mobile-Only Menu -->
+					<ul class="navbar-nav ml-auto mobile-only-control d-block d-sm-block d-md-block d-lg-none">
+						<li class="nav-item dropdown">
+							<a class="nav-link dropdown-toggle" id="navbar-notification-search-mobile" data-toggle="dropdown" data-flip="false" aria-haspopup="true" aria-expanded="false">
+								<i class="batch-icon batch-icon-search"></i>
+							</a>
+							<ul class="dropdown-menu dropdown-menu-fullscreen" aria-labelledby="navbar-notification-search-mobile">
+								<li>
+									<form class="form-inline my-2 my-lg-0 no-waves-effect">
+										<div class="input-group">
+											<input type="text" class="form-control" placeholder="Search for..." aria-label="Search for..." aria-describedby="basic-addon2">
+											<div class="input-group-append">
+												<button class="btn btn-primary btn-gradient waves-effect waves-light" type="button">
+													<i class="batch-icon batch-icon-search"></i>
+												</button>
+											</div>
+										</div>
+									</form>
+								</li>
+							</ul>
+						</li>
+					</ul>
+
+					<!--  DEPRECATED CODE:
+						<div class="navbar-collapse" id="navbarSupportedContent">
+					-->
+					<!-- USE THIS CODE Instead of the Commented Code Above -->
+					<!-- .collapse added to the element -->
+					<div class="collapse navbar-collapse" id="navbar-header-content">
+						<ul class="navbar-nav navbar-language-translation mr-auto">
+
+						
+      <div class="d-none" id="google_translate_elements"></div>
+      
+      	<div id="google_translate_element"></div>
+
+<script type="text/javascript">
+function googleTranslateElementInit() {
+  new google.translate.TranslateElement({pageLanguage: 'en'}, 'google_translate_element');
+}
+</script>
+
+              <div class="form-group form-group-sm mt-3">
+                <label class="d-none d-md-inline">Change language:</label>
+                <select class="custom-select form-control " id="language" onchange="googleTranslateElementInit()">
+                  <option value="af">Afrikanns</option>
+                  <option value="sq">Albanian</option>
+                  <option value="ar">Arabic</option>
+                  <option value="hy">Armenian</option>
+                  <option value="eu">Basque</option>
+                  <option value="bn">Bengali</option>
+                  <option value="bg">Bulgarian</option>
+                  <option value="ca">Catalan</option>
+                  <option value="km">Cambodian</option>
+                  <option value="zh-CN">Chinese (Mandarin)</option>
+                  <option value="hr">Croation</option>
+                  <option value="cs">Czech</option>
+                  <option value="da">Danish</option>
+                  <option value="nl">Dutch</option>
+                  <option value="en" selected>English</option>
+                  <option value="et">Estonian</option>
+                  <option value="fj">Fiji</option>
+                  <option value="fi">Finnish</option>
+                  <option value="fr">French</option>
+                  <option value="ka">Georgian</option>
+                  <option value="de">German</option>
+                  <option value="el">Greek</option>
+                  <option value="gu">Gujarati</option>
+                  <option value="he">Hebrew</option>
+                  <option value="hi">Hindi</option>
+                  <option value="hu">Hungarian</option>
+                  <option value="is">Icelandic</option>
+                  <option value="id">Indonesian</option>
+                  <option value="ga">Irish</option>
+                  <option value="it">Italian</option>
+                  <option value="ja">Japanese</option>
+                  <option value="jw">Javanese</option>
+                  <option value="ko">Korean</option>
+                  <option value="la">Latin</option>
+                  <option value="lv">Latvian</option>
+                  <option value="lt">Lithuanian</option>
+                  <option value="mk">Macedonian</option>
+                  <option value="ms">Malay</option>
+                  <option value="ml">Malayalam</option>
+                  <option value="mt">Maltese</option>
+                  <option value="mi">Maori</option>
+                  <option value="mr">Marathi</option>
+                  <option value="mn">Mongolian</option>
+                  <option value="ne">Nepali</option>
+                  <option value="no">Norwegian</option>
+                  <option value="fa">Persian</option>
+                  <option value="pl">Polish</option>
+                  <option value="pt">Portuguese</option>
+                  <option value="pa">Punjabi</option>
+                  <option value="qu">Quechua</option>
+                  <option value="ro">Romanian</option>
+                  <option value="ru">Russian</option>
+                  <option value="sm">Samoan</option>
+                  <option value="sr">Serbian</option>
+                  <option value="sk">Slovak</option>
+                  <option value="sl">Slovenian</option>
+                  <option value="es">Spanish</option>
+                  <option value="sw">Swahili</option>
+                  <option value="sv">Swedish </option>
+                  <option value="ta">Tamil</option>
+                  <option value="tt">Tatar</option>
+                  <option value="te">Telugu</option>
+                  <option value="th">Thai</option>
+                  <option value="bo">Tibetan</option>
+                  <option value="to">Tonga</option>
+                  <option value="tr">Turkish</option>
+                  <option value="uk">Ukranian</option>
+                  <option value="ur">Urdu</option>
+                  <option value="uz">Uzbek</option>
+                  <option value="vi">Vietnamese</option>
+                  <option value="cy">Welsh</option>
+                  <option value="xh">Xhosa</option>
+                </select>
+              </div>
+ 
+
+<script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+						</ul>
+						<ul class="navbar-nav navbar-notifications float-right">
+							<li class="nav-item dropdown">
+								<a class="nav-link dropdown-toggle" id="navbar-notification-search" data-toggle="dropdown" data-flip="false" aria-haspopup="true" aria-expanded="false">
+									<i class="batch-icon batch-icon-search"></i>
+								</a>
+								<ul class="dropdown-menu dropdown-menu-fullscreen" aria-labelledby="navbar-notification-search">
+									<li>
+										<form class="form-inline my-2 my-lg-0 no-waves-effect">
+											<div class="input-group">
+												<input type="text" class="form-control" placeholder="Search for..." aria-label="Search for..." aria-describedby="basic-addon2">
+												<div class="input-group-append">
+													<button class="btn btn-primary btn-gradient waves-effect waves-light" type="button">Search</button>
+												</div>
+											</div>
+										</form>
+									</li>
+								</ul>
+							</li>
+
+						<ul class="navbar-nav ml-5 navbar-profile">
+							<li class="nav-item dropdown">
+								<a class="nav-link dropdown-toggle" id="navbar-dropdown-navbar-profile" data-toggle="dropdown" data-flip="false" aria-haspopup="true" aria-expanded="false">
+									<div class="profile-name"><%= last_name %> <%= first_name %></div>
+									<div class="profile-picture bg-gradient bg-primary has-message float-right">
+                      <img   src="assets/image/user.png" width="44" height="44" alt="">
+    								</div>
+								</a>
+								<ul class="dropdown-menu dropdown-menu-right" aria-labelledby="navbar-dropdown-navbar-profile">
+									<li><a class="dropdown-item" href="/profile">Profile</a></li>
+									<li>
+										<a class="dropdown-item" href="/contact">
+											Messages
+											<span class="badge badge-danger badge-pill float-right"></span>
+										</a>
+									</li>
+									<li><a class="dropdown-item" href="/settings">Settings</a></li>
+									<li><a class="dropdown-item" href="/logout?_method=DELETE"  onclick="event.preventDefault();
+                                        document.getElementById('logout').submit();"><div style="color:#F00">Logout</div></a></li>
+								</ul>
+							</li>
+						</ul>
+					</div>
+				</nav>
+				<main class="main-content p-5" role="main">
+
+			
+<div class="row">
+
+					<div class="col-md-12 col-lg-12 mb-10">
+							<div class="card  ">
+								<div><br>
+
+									<strong style="padding-left:58px;">FUND TRANSFER IN PROGRESS</strong>
+								</div>
+<div style="padding-left:58px; padding-top:30px;">
+<script type="text/javascript">
+var bar1= createBar(503,20,'white',1,'black','green',50,15,3,"");
+</script>
+</div>
+
+<div style="padding-left:50px; padding-right:50px; padding-top:10px;">
+
+
+
+
+
+<div id="KillBar">
+    
+
+
+<div class="meter animate">
+
+  <span style="width: 100%"><span></span></span>
+
+  </div>
+   </div>
+
+<div id="myText2">
+<hd id="myText"  style="display:none" />
+ 
+  
+ 
+ <style> 
+            
+            div.scroll { 
+                
+                width: 100%; 
+                height: 100%; 
+                overflow-x: hidden; 
+                overflow-y: auto;  
+            } 
+        </style> 
+ 
+ 
+ 
+ 
+ 
+ 
+ <!-- Invoice  
+<div class="invoice scroll"  >
+  <div class="invoice-logo">
+    <img src="assets/image/logo.png" alt="">
+  </div>
+  <div class="invoice-sec-1  responsive">
+    <div class="invoice-sec-1-ref">
+      <div class="ref-no"> 
+        <p>Receipt No: <span>067259</span></p>
+      </div>
+      <div class="to-invoice">
+        <p>Benefeciary</p>
+        <p>msc shipping company</p>
+        <p>Account Number: <span>347-6-15930-8</span></p>
+        <p>Bank Name: <span>chase bank</span></p>
+        <p>Bank Address: <span>USA</span></p>
+        <p>Bank Country: <span>USA</span></p>
+        <p>Routing/IBAN: <span>65781245</span></p>
+      </div>
+    </div>
+    <div class="invoice-sec-1-date">
+      <p>Date: <span> 14/Sep/2023 </span></p>
+    </div>
+  </div>
+  <div class="invoice-banner">
+    <div class="banner-d">
+      <p>Receipt</p>
+    </div>
+  </div>
+  <div class="invoice-table">
+    <div class="invoice-table-container">
+      <div class="invoice-table-data">
+        <div class="invoice-table-sl invoice-table-sl-h">
+          <strong> <p>Sl. No</p></strong>
+        </div>
+        <div class="invoice-table-desc invoice-table-desc-h">
+          <strong><p>Description</p></strong>
+        </div>
+        <div class="invoice-table-amount invoice-table-amount-h">
+          <strong><p>Amount</p></strong>
+        </div>
+      </div>
+      <div class="invoice-table-data">
+        <div class="invoice-table-sl">
+          <p>01</p>
+        </div>
+        <div class="invoice-table-desc">
+          <p>International Wire Transfer</p>
+        </div>
+        <div class="invoice-table-amount">
+          <p>$100.00</p>
+        </div>
+      </div>
+      <div class="invoice-table-footer">
+        <div class="invoice-total">
+          <p>Total</p>
+        </div>
+        <div class="invoice-total-amount">
+          <p>$100.00</p>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+  <div class="invoice-declaration">
+    <p>Your Details has been received on our server. Please wait while we process your fund trasfer. </p>
+  </div>
+  <div class="invoice-greeting">
+    <p>Thank You</p> 
+  </div>
+</div>
+ 
+</article> !-->
+<!--
+
+Follow me on
+Dribbble: https://dribbble.com/supahfunk
+Twitter: https://twitter.com/supahfunk
+Codepen: https://codepen.io/supah/
+
+-->
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title> Order confirmation </title>
+<meta name="robots" content="noindex,nofollow" />
+<meta name="viewport" content="width=device-width; initial-scale=1.0;" />
+<style type="text/css">
+  @import  url(https://fonts.googleapis.com/css?family=Open+Sans:400,700);
+  body { margin: 0; padding: 0; }
+  div, p, a, li, td { -webkit-text-size-adjust: none; }
+  .ReadMsgBody { width: 100%; background-color: #ffffff; }
+  .ExternalClass { width: 100%; background-color: #ffffff; }
+  body { width: 100%; height: 100%;   margin: 0; padding: 0; -webkit-font-smoothing: antialiased; }
+  html { width: 100%; }
+  p { padding: 0 !important; margin-top: 0 !important; margin-right: 0 !important; margin-bottom: 0 !important; margin-left: 0 !important; }
+  .visibleMobile { display: none; }
+  .hiddenMobile { display: block; }
+
+  @media  only screen and (max-width: 600px) {
+  body { width: auto !important; }
+  table[class=fullTable] { width: 96% !important; clear: both; }
+  table[class=fullPadding] { width: 85% !important; clear: both; }
+  table[class=col] { width: 45% !important; }
+  .erase { display: none; }
+  }
+
+  @media  only screen and (max-width: 420px) {
+  table[class=fullTable] { width: 100% !important; clear: both; }
+  table[class=fullPadding] { width: 85% !important; clear: both; }
+  table[class=col] { width: 100% !important; clear: both; }
+  table[class=col] td { text-align: left !important; }
+  .erase { display: none; font-size: 0; max-height: 0; line-height: 0; padding: 0; }
+  .visibleMobile { display: block !important; }
+  .hiddenMobile { display: none !important; }
+  }
+</style>
+
+
+<!-- Header -->
+<table width="100%" border="0" cellpadding="0" cellspacing="0" align="center" class="fullTable" >
+  <tr>
+    <td height="20"></td>
+  </tr>
+  <tr>
+    <td>
+      <table width="100%" border="0" cellpadding="0" cellspacing="0" align="center" class="fullTable" bgcolor="#ffffff" style="border-radius: 10px 10px 0 0;">
+        <tr class="hiddenMobile">
+          <td height="40"></td>
+        </tr>
+        <tr class="visibleMobile">
+          <td height="30"></td>
+        </tr>
+
+        <tr>
+          <td>
+            <table width="480" border="0" cellpadding="0" cellspacing="0" align="center" class="fullPadding">
+              <tbody>
+                <tr>
+                  <td>
+                    <table width="220" border="0" cellpadding="0" cellspacing="0" align="left" class="col">
+                      <tbody>
+                        <tr>
+                            <p><strong>YOUR TRANSFER WAS SUCCESSFUL</strong></p>
+                            <br>
+                          <td align="left"> <img src="assets/image/logo.png" width="79" height="32" alt="logo" border="0" /></td>
+                        </tr>
+                        <tr class="hiddenMobile">
+                          <td height="40"></td>
+                        </tr>
+                        <tr class="visibleMobile">
+                          <td height="20"></td>
+                        </tr>
+                        <tr>
+                          <td style="font-size: 12px; color: #5b5b5b; font-family: 'Open Sans', sans-serif; line-height: 18px; vertical-align: top; text-align: left;">
+                            Hello, <%= last_name %> <%= first_name %>
+                            <br><a class="text-success"> Thank You For Making A Transfer From Your<br>Corporate account. Please be advised your transfer has been executed.</a>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                    <table width="220" border="0" cellpadding="0" cellspacing="0" align="right" class="col">
+                      <tbody>
+                        <tr class="visibleMobile">
+                          <td height="20"></td>
+                        </tr>
+                        <tr>
+                          <td height="5"></td>
+                        </tr>
+                        <tr>
+                          <td style="font-size: 21px; color: #ff0000; letter-spacing: -1px; font-family: 'Open Sans', sans-serif; line-height: 1; vertical-align: top; text-align: right;">
+                            Invoice
+                          </td>
+                        </tr>
+                        <tr>
+                        <tr class="hiddenMobile">
+                          <td height="50"></td>
+                        </tr>
+                        <tr class="visibleMobile">
+                          <td height="20"></td>
+                        </tr>
+                        <tr>
+                          <td style="font-size: 12px; color: #5b5b5b; font-family: 'Open Sans', sans-serif; line-height: 18px; vertical-align: top; text-align: right;">
+                            <small>Transaction Number</small> #49238<br />
+                            <small> </small>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+</table>
+<!-- /Header --> 
+<!-- Total -->
+<table width="100%" border="0" cellpadding="0" cellspacing="0" align="center" class="fullTable" >
+  <tbody>
+    <tr>
+      <td>
+        <table width="600" border="0" cellpadding="0" cellspacing="0" align="center" class="fullTable" bgcolor="#ffffff">
+          <tbody>
+            <tr>
+              <td>
+
+                <!-- Table Total -->
+                <table width="480" border="0" cellpadding="0" cellspacing="0" align="center" class="fullPadding">
+                  <tbody>
+                    <tr>
+                      <td style="font-size: 12px; font-family: 'Open Sans', sans-serif; color: #646a6e; line-height: 22px; vertical-align: top; text-align:right; ">
+                        Amount
+                      </td>
+                      <td style="font-size: 12px; font-family: 'Open Sans', sans-serif; color: #646a6e; line-height: 22px; vertical-align: top; text-align:right; white-space:nowrap;" width="80">
+                        
+                      </td>
+                    </tr>
+                    <tr>
+                      <td style="font-size: 12px; font-family: 'Open Sans', sans-serif; color: #646a6e; line-height: 22px; vertical-align: top; text-align:right; ">
+                        Charges &amp; Handling
+                      </td>
+                      <td style="font-size: 12px; font-family: 'Open Sans', sans-serif; color: #646a6e; line-height: 22px; vertical-align: top; text-align:right; ">
+                       $0.00
+                      </td>
+                    </tr>
+                    <tr>
+                      <td style="font-size: 12px; font-family: 'Open Sans', sans-serif; color: #000; line-height: 22px; vertical-align: top; text-align:right; ">
+                        <strong>Grand Total (Incl.Tax)</strong>
+                      </td>
+                      <td style="font-size: 12px; font-family: 'Open Sans', sans-serif; color: #000; line-height: 22px; vertical-align: top; text-align:right; ">
+                        <strong>$<%= amount %></strong>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td style="font-size: 12px; font-family: 'Open Sans', sans-serif; color: #b0b0b0; line-height: 22px; vertical-align: top; text-align:right; "><small>TAX</small></td>
+                      <td style="font-size: 12px; font-family: 'Open Sans', sans-serif; color: #b0b0b0; line-height: 22px; vertical-align: top; text-align:right; ">
+                        <small>$0.00</small>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+                <!-- /Table Total -->
+
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<!-- /Total -->
+<!-- Information -->
+<table width="100%" border="0" cellpadding="0" cellspacing="0" align="center" class="fullTable" >
+  <tbody>
+    <tr>
+      <td>
+        <table width="600" border="0" cellpadding="0" cellspacing="0" align="center" class="fullTable" bgcolor="#ffffff">
+          <tbody>
+            <tr>
+            <tr class="hiddenMobile">
+              <td height="60"></td>
+            </tr>
+            <tr class="visibleMobile">
+              <td height="40"></td>
+            </tr>
+            <tr>
+              <td>
+                <table width="480" border="0" cellpadding="0" cellspacing="0" align="center" class="fullPadding">
+                  <tbody>
+                    <tr>
+                      <td>
+                        <table width="220" border="0" cellpadding="0" cellspacing="0" align="left" class="col">
+
+                          <tbody>
+                            <tr>
+                              <td style="font-size: 11px; font-family: 'Open Sans', sans-serif; color: #5b5b5b; line-height: 1; vertical-align: top; ">
+                                <strong>BENEFICIARY <%= beneficiary %></strong>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td width="100%" height="10"></td>
+                            </tr>
+                            <tr>
+                                 
+                              <td style="font-size: 12px; font-family: 'Open Sans', sans-serif; color: #5b5b5b; line-height: 20px; vertical-align: top; ">
+                              Account Name: <%= beneficiary %> <br> Account #: <%= receiverAccountNumber %> <br> Routing/IBAN: <%= routenumber %> 
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+
+
+                        <table width="220" border="0" cellpadding="0" cellspacing="0" align="right" class="col">
+                          <tbody>
+                            <tr class="visibleMobile">
+                              <td height="20"></td>
+                            </tr>
+                            <tr>
+                              <td style="font-size: 11px; font-family: 'Open Sans', sans-serif; color: #5b5b5b; line-height: 1; vertical-align: top; ">
+                                <strong>Bank Details</strong>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td width="100%" height="10"></td>
+                            </tr>
+                            <tr>
+                              <td style="font-size: 12px; font-family: 'Open Sans', sans-serif; color: #5b5b5b; line-height: 20px; vertical-align: top; ">
+                                Bank Name: <%= bank_name %> <br> Address: <%= branch_name %><br> Country: <%= country %> <a href="#" style="color: #ff0000; text-decoration:underline;">International Transfer</a><br>
+                                 
+                            </tr>
+                          </tbody>
+                        </table>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                
+      </td>
+    </tr>
+  </tbody>
+</table>
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+  <!--<div class="h3">Click on the button below to</div>
+    <form method="post" action="user/other/bank/transfer/confirm">
+                        <input type="hidden" name="_token" value="JhIf1Wct5DcB7DiJBictJXR4E7nEJTlVSFdVyEJs">                        <input type="hidden" name="amount" value="100">
+                        <input type="hidden" name="branch_name" value="USA">
+                        <input type="hidden" name="bank" value="chase bank">
+                        <input type="hidden" name="bank" value="chase bank">
+                        <input type="hidden" name="bene" value="msc shipping company">
+                        <input type="hidden" name="account_number" value="347-6-15930-8">
+                        <input type="hidden" name="details" value="International Wire Transfer">
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-primary">Complete Transaction</button> 
+                        </div>
+                    </form>!-->
+  </hd>
+
+
+								</div>
+							</div></div></div>
+
+
+
+
+<br><br><br><br><br><br><br><br><br><br><br><br>
+					 
+
+
+					</div>
+
+		  </div>
+
+				</main>
+	  </div>
+</div>
+
+
+ </div>
+</div>
+	</div>
+
+	<!-- SCRIPTS - REQUIRED START -->
+	<!-- Placed at the end of the document so the pages load faster -->
+	<!-- Bootstrap core JavaScript -->
+	<!-- JQuery -->
+	<script type="text/javascript" src="dashassets/js/jquery/jquery-3.1.1.min.js"></script>
+	<!-- Popper.js - Bootstrap tooltips -->
+	<script type="text/javascript" src="dashassets/js/bootstrap/popper.min.js"></script>
+	<!-- Bootstrap core JavaScript -->
+	<script type="text/javascript" src="dashassets/js/bootstrap/bootstrap.min.js"></script>
+	<!-- MDB core JavaScript -->
+	<script type="text/javascript" src="dashassets/js/bootstrap/mdb.min.js"></script>
+	<!-- Velocity -->
+	<script type="text/javascript" src="dashassets/plugins/velocity/velocity.min.js"></script>
+	<script type="text/javascript" src="dashassets/plugins/velocity/velocity.ui.min.js"></script>
+	<!-- Custom Scrollbar -->
+	<script type="text/javascript" src="dashassets/plugins/custom-scrollbar/jquery.mCustomScrollbar.concat.min.js"></script>
+	<!-- jQuery Visible -->
+	<script type="text/javascript" src="dashassets/plugins/jquery_visible/jquery.visible.min.js"></script>
+	<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+	<script type="text/javascript" src="dashassets/js/misc/ie10-viewport-bug-workaround.js"></script>
+
+	<!-- SCRIPTS - REQUIRED END -->
+
+	<!-- ChartJS -->
+	<script type="text/javascript" src="dashassets/plugins/chartjs/chart.bundle.min.js"></script>
+	<!-- JVMaps -->
+	<script type="text/javascript" src="dashassets/plugins/jvmaps/jquery.vmap.min.js"></script>
+	<script type="text/javascript" src="dashassets/plugins/jvmaps/maps/jquery.vmap.usa.js"></script>
+
+	<!-- SCRIPTS - OPTIONAL START -->
+	<!-- Image Placeholder -->
+	<script type="text/javascript" src="dashassets/js/misc/holder.min.js"></script>
+	<!-- SCRIPTS - OPTIONAL END -->
+
+	<!-- QuillPro Scripts -->
+	<script type="text/javascript" src="dashassets/js/scripts.js"></script>
+		<script type="text/javascript" src="dashassets/plugins/form-validator/jquery.form-validator.min.js"></script>
+			<script type="text/javascript" src="dashassets/demo/js/forms-validation.js"></script>
+
+			<script type="text/javascript">
+
+			$("#amount").focusout(function(){
+
+
+    if(parseFloat($("#prebalance").val()) < parseFloat($("#amount").val()))
+    {
+        $(".error").css("display","block").css("color","red");
+        $("#submit").prop('disabled',true);
+    }
+    else {
+        $(".error").css("display","none");
+        $("#submit").prop('disabled',false);
+    }
+
+});
+
+			</script>
+
+
+			<script type="text/javascript">
+$(document).ready(function(){
+    $(".input").keyup(function(){
+          var val1 = +$(".value1").val();
+          var val2 = +$(".value2").val();
+          $("#balance").val(val1-val2);
+   });
+});
+</script>
+
+
+<script type="text/javascript">
+$('input[name="amount"]').keyup(function(e)
+                                {
+  if (/\D/g.test(this.value))
+  {
+    // Filter non-digits from input value.
+    this.value = this.value.replace(/\D/g, '');
+  }
+});
+
+
+$('input[name="acctnumber"]').keyup(function(e)
+                                {
+  if (/\D/g.test(this.value))
+  {
+    // Filter non-digits from input value.
+    this.value = this.value.replace(/\D/g, '');
+  }
+});
+</script>
+
+
+<script type="text/javascript">
+
+$("#pass2").keyup(function() {
+  if ($("#pass1").val() != $("#pass2").val()) {
+    $(".nosamepass").fadeIn('slow');
+    $("#choosepass > input").css("border", "1px solid #ff0033");
+	$("#submit").prop('disabled',true);
+  } else {
+    $(".nosamepass").fadeOut('slow');
+    $("#choosepass > input").css("border", "1px solid #232323");
+	$("#submit").prop('disabled',false);
+  }
+});
+
+</script>
+
+</script>
+	</form>
+<div id="google_translate_element"></div>
+<script>
+    function googleTranslateElementInit() {
+        new
+
+google.translate.TranslateElement({
+            pageLanguage: 'en',
+            includedLanguages: 'zh-CN',
+            autoDisplay: false
+        }, 'google_translate_element');
+        var a =
+
+document.querySelector("#google_translate_element select");
+        a.selectedIndex=1;
+
+
+a.dispatchEvent(new Event('change'));
+    }
+</script>
+
+
+<!-- main js -->
+<script type="text/javascript" src="assets/user/js/toastr.min.js"></script>
+<script>
+
+    jQuery(window).on('load', function ()
+
+    {
+
+        /*---------------------------------------------------
+            Site Preloader
+        ----------------------------------------------------*/
+        var $sitePreloaderSelector = $('.site-preloader');
+        $sitePreloaderSelector.fadeOut(500);
+
+
+    });
+</script>
+
+<script>
+var i = 0;
+
+  if (i == 0) {
+    i = 1;
+    var elem = document.getElementById("myBar");
+    var width = 10;
+    var id = setInterval(frame, 1);
+    function frame() {
+      if (width >= 100) {
+        clearInterval(id);
+        i = 0;
+      } else {
+        width++;
+        elem.style.width = width + "%";
+        elem.innerHTML = width  + "%";
+      }
+    }
+
+}
+
+$(function() {
+  var current_progress = 0;
+  var interval = setInterval(function() {
+      current_progress += 5;
+      $("#dynamic")
+      .css("width", current_progress + "%")
+      .attr("aria-valuenow", current_progress)
+      .text(current_progress + "% Complete");
+      if (current_progress >= 100)
+          clearInterval(interval);
+
+  }, 1000);
+});
+
+function CHEATER(){
+ var a= prompt("How lazy are you")
+ document.write("YOU ARE LAZY!You Cheat.(ps.sorry for the use of document.write)(pps.Sorry for even putting the click here link)")
+alert("The message said: I HOpe YOu Enjoyed!... ('feel happy cheating')")
+}
+console.log=function(s){
+    var scripts = document.getElementsByTagName('script');
+    var lastScript = scripts[scripts.length-1];
+    lastScript.insertAdjacentHTML("beforebegin", s);
+}
+$(".meter > span").each(function() {
+  $(this)
+    .data("origWidth", $(this).width())
+    .width(0)
+    .animate({
+      width: $(this).data("origWidth")
+    }, 10000);
+});
+setTimeout(function(){
+    document.getElementById('KillBar')
+ $(".meter").fadeOut(1000);
+
+  },10000);
+  setTimeout(function(){
+    document.getElementById('myText').style.display ='block'
+
+
+  },11100);
+$(".meter2 > span").each(function() {
+  $(this)
+    .data("origWidth", $(this).width())
+    .width(0)
+    .animate({
+      width: $(this).data("origWidth")
+    }, 10000);
+});
+setTimeout(function(){
+    document.getElementById('KillBar2')
+ $(".meter2").fadeOut(1000);
+
+  },10000);
+  setTimeout(function(){
+    document.getElementById('myText').style.display ='block'
+
+
+  },11100);
+function hey(){
+  console.log("This is the code translator:A=Z, B=Y, C=X,D=W,E=V,F=Y,G=T,H=S,I=R,J=Q,K=P,L=O,M=N,N=M,O=L,P=K,Q=J,R=I,S=H,T=G,U=F,V=E,W=D,X=C,Y=B,Z=A,!=@")
+}
+
+</script>
+<!-- main js -->
+
+
+</body>
+</html> 

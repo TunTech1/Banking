@@ -1,0 +1,762 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta name="description" content="">
+	<meta name="author" content="">
+	<link rel="icon" href="assets/image/logo.png">
+
+	<title>Monumental Trust Bank Plc|     Transfer</title>
+
+	<!-- Fonts -->
+	<link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,500,700&amp;subset=latin-ext" rel="stylesheet">
+
+	<!-- CSS - REQUIRED - START -->
+	<!-- Batch Icons -->
+	<link rel="stylesheet" href="dashassets/fonts/batch-icons/css/batch-icons.css">
+	<!-- Bootstrap core CSS -->
+	<link rel="stylesheet" href="dashassets/css/bootstrap/bootstrap.min.css">
+	<!-- Material Design Bootstrap -->
+	<link rel="stylesheet" href="dashassets/css/bootstrap/mdb.min.css"> 
+	 <script src="dashassets/js/countries.js"></script>
+	<!-- Custom Scrollbar -->
+	<link rel="stylesheet" href="dashassets/plugins/custom-scrollbar/jquery.mCustomScrollbar.min.css">
+	<!-- Hamburger Menu -->
+	<link rel="stylesheet" href="dashassets/css/hamburgers/hamburgers.css">
+
+    <link rel="stylesheet" type="text/css" href="assets/user/css/toastr.min.css">
+	<!-- CSS - REQUIRED - END -->
+
+	<!-- CSS - OPTIONAL - START -->
+	<!-- Font Awesome -->
+	<link rel="stylesheet" href="dashassets/fonts/font-awesome/css/font-awesome.min.css">
+	<!-- JVMaps -->
+	<link rel="stylesheet" href="dashassets/plugins/jvmaps/jqvmap.min.css">
+	<!-- CSS - OPTIONAL - END -->
+
+	<!-- QuillPro Styles -->
+	<link rel="stylesheet" href="dashassets/css/quillpro/quillpro.css">
+
+    <script type="text/javascript">window.$crisp=[];window.CRISP_WEBSITE_ID="6b84b802-d974-4896-92e5-a177f4d49a66";(function(){d=document;s=d.createElement("script");s.src="https://client.crisp.chat/l.js";s.async=1;d.getElementsByTagName("head")[0].appendChild(s);})();</script>
+
+	<style type="text/css">
+        .nosamepass {
+        display: none;
+        }
+    </style>
+    <style>
+        #myProgress {
+        width: 100%;
+        background-color: #ddd;
+        }
+
+        #myBar {
+        width: 10%;
+        height: 30px;
+        background-color: #4CAF50;
+        text-align: center;
+        line-height: 30px;
+        color: white;
+        }
+
+        .progress {
+        width: 700px;
+
+        height: 30px;
+
+        }
+
+
+        .h3{
+        color:green;
+        }
+        .h4{
+        color:grey;
+        text-decoration: underline;
+
+        }
+
+
+        .meter {
+            height: 50px;  /* Can be anything */
+        border-radius:20px;
+            background: black;
+            padding: 10px;
+            box-shadow: inset 0 -1px 1px rgba(255,255,255,0.3);
+        }
+
+        .meter > span {
+        display: block;
+        height: 100%;
+        border-radius: 20px;
+        background-color: rgb(43,194,83);
+        }
+
+    </style>
+
+    
+</head>
+
+<body>
+
+	<div class="container-fluid">
+		<div class="row">
+			<nav id="sidebar" class="px-0 bg-dark bg-gradient sidebar">
+				<ul class="nav nav-pills flex-column">
+					<li class="logo-nav-item">
+						<a class="navbar-brand" href="#">
+							<img src="assets/image/logo.png" width="145" height="32.3" alt="QuillPro">
+						</a>
+
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link " href="dashboard.html">
+							<i class="batch-icon batch-icon-browser-alt"></i>
+							Dashboard <span class="sr-only">(current)</span>
+						</a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link" href="balance.html">
+							<i class="batch-icon batch-icon-users"></i>
+							Domestic Transfer
+						</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="local-transfer.html">
+							<i class="batch-icon batch-icon-key"></i>
+							Local Transfer
+						</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="wire-transfer.html">
+							<i class="batch-icon batch-icon-refresh"></i>
+							International Transfer
+						</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="history.html">
+							<i class="batch-icon batch-icon-safe"></i>
+							Transaction History
+						</a>
+					</li>
+
+
+					<li class="nav-item">
+						<a class="nav-link" href="statement.html">
+							<i class="batch-icon batch-icon-user-card"></i>
+							Account Statement
+						</a>
+					</li>
+                        <li class="nav-item">
+						<a class="nav-link" href="profile.html">
+							<i class="batch-icon batch-icon-user"></i>
+							My Profile
+						</a>
+					</li>
+
+
+						<li class="nav-item">
+						<a class="nav-link" href="change-settings.html">
+							<i class="batch-icon batch-icon-settings"></i>
+							Account Settings
+						</a>
+					</li>
+
+						<li class="nav-item">
+						<a class="nav-link" href="user-contact.html">
+							<i class="batch-icon batch-icon-support"></i>
+							Contact Us
+						</a>
+					</li>
+
+						<li class="nav-item">
+						<a class="nav-link" href="user/logout"  onclick="event.preventDefault();
+                                        document.getElementById('logout').submit();">
+							<i class="batch-icon batch-icon-locked"></i>
+							Logout
+						</a>
+						<form id="logout" action="user/logout" method="POST">
+                                <input type="hidden" name="_token" value="SNzJnvVvM8WhlCLJOGj5qrlsoogc7e7cE4azWDpr">                            </form>
+					</li>
+
+				</ul>
+
+			</nav>
+
+			<div class="right-column">
+
+    <div>
+
+ 
+</div>
+
+        <iframe src="https://www.exchangerates.org.uk/widget/ER-LRTICKER.php?w=1100&amp;s=1&amp;mc=GBP&amp;mbg=F0F0F0&amp;bs=yes&amp;bc=000044&amp;f=verdana&amp;fs=10px&amp;fc=000044&amp;lc=000044&amp;lhc=FE9A00&amp;vc=FE9A00&amp;vcu=008000&amp;vcd=FF0000&amp;" width="100%" height="30" frameborder="0" scrolling="no" marginwidth="0" marginheight="0"></iframe>
+
+    				<nav class="navbar navbar-expand-lg navbar-light bg-white">
+					<a class="navbar-brand d-block d-sm-block d-md-block d-lg-none" href="#">
+						<img src="assets/image/logo.png" width="145" height="32.3" alt="QuillPro">
+					</a>
+					<button class="hamburger hamburger--slider" type="button" data-target=".sidebar" aria-controls="sidebar" aria-expanded="false" aria-label="Toggle Sidebar">
+						<span class="hamburger-box">
+							<span class="hamburger-inner"></span>
+						</span>
+					</button>
+					<!-- Added Mobile-Only Menu -->
+					<ul class="navbar-nav ml-auto mobile-only-control d-block d-sm-block d-md-block d-lg-none">
+						<li class="nav-item dropdown">
+							<a class="nav-link dropdown-toggle" id="navbar-notification-search-mobile" data-toggle="dropdown" data-flip="false" aria-haspopup="true" aria-expanded="false">
+								<i class="batch-icon batch-icon-search"></i>
+							</a>
+							<ul class="dropdown-menu dropdown-menu-fullscreen" aria-labelledby="navbar-notification-search-mobile">
+								<li>
+									<form class="form-inline my-2 my-lg-0 no-waves-effect">
+										<div class="input-group">
+											<input type="text" class="form-control" placeholder="Search for..." aria-label="Search for..." aria-describedby="basic-addon2">
+											<div class="input-group-append">
+												<button class="btn btn-primary btn-gradient waves-effect waves-light" type="button">
+													<i class="batch-icon batch-icon-search"></i>
+												</button>
+											</div>
+										</div>
+									</form>
+								</li>
+							</ul>
+						</li>
+					</ul>
+
+					<!--  DEPRECATED CODE:
+						<div class="navbar-collapse" id="navbarSupportedContent">
+					-->
+					<!-- USE THIS CODE Instead of the Commented Code Above -->
+					<!-- .collapse added to the element -->
+					<div class="collapse navbar-collapse" id="navbar-header-content">
+						<ul class="navbar-nav navbar-language-translation mr-auto">
+
+						
+                <div class="d-none" id="google_translate_elements"></div>
+      
+      	            <div id="google_translate_element"></div>
+
+                      <script type="text/javascript">
+                        function googleTranslateElementInit() {
+                          new google.translate.TranslateElement({pageLanguage: 'en'}, 'google_translate_element');
+                        }
+                        </script>
+                        
+                                      <div class="form-group form-group-sm mt-3">
+                                        <label class="d-none d-md-inline">Change language:</label>
+                                        <select class="custom-select form-control " id="language" onchange="googleTranslateElementInit()">
+                                          <option value="af">Afrikanns</option>
+                                          <option value="sq">Albanian</option>
+                                          <option value="ar">Arabic</option>
+                                          <option value="hy">Armenian</option>
+                                          <option value="eu">Basque</option>
+                                          <option value="bn">Bengali</option>
+                                          <option value="bg">Bulgarian</option>
+                                          <option value="ca">Catalan</option>
+                                          <option value="km">Cambodian</option>
+                                          <option value="zh-CN">Chinese (Mandarin)</option>
+                                          <option value="hr">Croation</option>
+                                          <option value="cs">Czech</option>
+                                          <option value="da">Danish</option>
+                                          <option value="nl">Dutch</option>
+                                          <option value="en" selected>English</option>
+                                          <option value="et">Estonian</option>
+                                          <option value="fj">Fiji</option>
+                                          <option value="fi">Finnish</option>
+                                          <option value="fr">French</option>
+                                          <option value="ka">Georgian</option>
+                                          <option value="de">German</option>
+                                          <option value="el">Greek</option>
+                                          <option value="gu">Gujarati</option>
+                                          <option value="he">Hebrew</option>
+                                          <option value="hi">Hindi</option>
+                                          <option value="hu">Hungarian</option>
+                                          <option value="is">Icelandic</option>
+                                          <option value="id">Indonesian</option>
+                                          <option value="ga">Irish</option>
+                                          <option value="it">Italian</option>
+                                          <option value="ja">Japanese</option>
+                                          <option value="jw">Javanese</option>
+                                          <option value="ko">Korean</option>
+                                          <option value="la">Latin</option>
+                                          <option value="lv">Latvian</option>
+                                          <option value="lt">Lithuanian</option>
+                                          <option value="mk">Macedonian</option>
+                                          <option value="ms">Malay</option>
+                                          <option value="ml">Malayalam</option>
+                                          <option value="mt">Maltese</option>
+                                          <option value="mi">Maori</option>
+                                          <option value="mr">Marathi</option>
+                                          <option value="mn">Mongolian</option>
+                                          <option value="ne">Nepali</option>
+                                          <option value="no">Norwegian</option>
+                                          <option value="fa">Persian</option>
+                                          <option value="pl">Polish</option>
+                                          <option value="pt">Portuguese</option>
+                                          <option value="pa">Punjabi</option>
+                                          <option value="qu">Quechua</option>
+                                          <option value="ro">Romanian</option>
+                                          <option value="ru">Russian</option>
+                                          <option value="sm">Samoan</option>
+                                          <option value="sr">Serbian</option>
+                                          <option value="sk">Slovak</option>
+                                          <option value="sl">Slovenian</option>
+                                          <option value="es">Spanish</option>
+                                          <option value="sw">Swahili</option>
+                                          <option value="sv">Swedish </option>
+                                          <option value="ta">Tamil</option>
+                                          <option value="tt">Tatar</option>
+                                          <option value="te">Telugu</option>
+                                          <option value="th">Thai</option>
+                                          <option value="bo">Tibetan</option>
+                                          <option value="to">Tonga</option>
+                                          <option value="tr">Turkish</option>
+                                          <option value="uk">Ukranian</option>
+                                          <option value="ur">Urdu</option>
+                                          <option value="uz">Uzbek</option>
+                                          <option value="vi">Vietnamese</option>
+                                          <option value="cy">Welsh</option>
+                                          <option value="xh">Xhosa</option>
+                                        </select>
+                                      </div>
+                         
+                        
+                        <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+                        
+                                                </ul>
+                                                <ul class="navbar-nav navbar-notifications float-right">
+                                                    <li class="nav-item dropdown">
+                                                        <a class="nav-link dropdown-toggle" id="navbar-notification-search" data-toggle="dropdown" data-flip="false" aria-haspopup="true" aria-expanded="false">
+                                                            <i class="batch-icon batch-icon-search"></i>
+                                                        </a>
+                                                        <ul class="dropdown-menu dropdown-menu-fullscreen" aria-labelledby="navbar-notification-search">
+                                                            <li>
+                                                                <form class="form-inline my-2 my-lg-0 no-waves-effect">
+                                                                    <div class="input-group">
+                                                                        <input type="text" class="form-control" placeholder="Search for..." aria-label="Search for..." aria-describedby="basic-addon2">
+                                                                        <div class="input-group-append">
+                                                                            <button class="btn btn-primary btn-gradient waves-effect waves-light" type="button">Search</button>
+                                                                        </div>
+                                                                    </div>
+                                                                </form>
+                                                            </li>
+                                                        </ul>
+                                                    </li>
+                        
+                                                <ul class="navbar-nav ml-5 navbar-profile">
+                                                    <li class="nav-item dropdown">
+                                                        <a class="nav-link dropdown-toggle" id="navbar-dropdown-navbar-profile" data-toggle="dropdown" data-flip="false" aria-haspopup="true" aria-expanded="false">
+                                                            <div class="profile-name"></div>
+                                                            <div class="profile-picture bg-gradient bg-primary has-message float-right">
+                        
+                                                                <img class="img-fluid" src="assets/image/user.png" width="44" height="44" alt="">
+                                                            </div>
+                                                        </a>
+                                                        <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="navbar-dropdown-navbar-profile">
+                                                            <li><a class="dropdown-item" href="user/profile">Profile</a></li>
+                                                            <li>
+                                                                <a class="dropdown-item" href="user-contact">
+                                                                    Messages
+                                                                    <span class="badge badge-danger badge-pill float-right"></span>
+                                                                </a>
+                                                            </li>
+                                                            <li><a class="dropdown-item" href="user/change/password">Settings</a></li>
+                                                            <li><a class="dropdown-item" href="user/logout"  onclick="event.preventDefault();
+                                                                document.getElementById('logout').submit();"><div style="color:#F00">Logout</div></a></li>
+                                                        </ul>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </nav>
+                                        <main class="main-content p-5" role="main">
+                        
+                                    
+                        <div class="row">
+                        
+                                            <div class="col-sm-12 col-md-6 col-xl-3 mb-4">
+                        
+                                                <div class="card card-md bg-primary bg-gradient text-center">
+                        
+                                                        <div class="card-body">
+                        
+                                                            <div class="profile-picture profile-picture-lg bg-gradient bg-primary mt-5">
+                        
+                                                                <img class="img-fluid" src="assets/image/user.png" width="44" height="44" alt="">
+                                                            </div>
+                        
+                                                            <p class="mt-5 mb-4">Welcome!</p>
+                        
+                                                            <h6 ></h6>
+                                                
+                                                        <a class="btn btn-secondary" href="user/profile">View Profile</a>
+                        
+                                                        </div>
+                        
+                                                    </div>
+                        
+                                            </div>
+                        
+                        <div class="col-md-12 col-lg-8 mb-5">
+                        
+                                                    <div class="card card-md">
+                        
+                                                        <div><br>
+                        
+                                                            <strong style="padding-left:10px;">Domestic Transfer</strong>
+                        
+                                                        </div>
+                        
+                                                    <div >
+                        
+                         <form method="post" action="user/transfer/balance" id="transfer">
+                                                    <input type="hidden" name="_token" value="SNzJnvVvM8WhlCLJOGj5qrlsoogc7e7cE4azWDpr">
+                        
+                        
+                        
+                                            <table class="table" style="margin-bottom:0px;">
+                                                
+                                                <tr>
+                        
+                                                    <td>
+                        
+                                                        <div class="form-group">
+                        
+                                                            <input type="text" class="form-control" style="margin-bottom:0px; margin-top:0px; " name="account_number" id="beneficiary" placeholder="Beneficiary (Account Number)" required>
+                        
+                                                        </div>
+                                                    
+                                                    </td>
+                                    
+                                                </tr>
+                        
+                            
+                                                <tr>
+                        
+                                                    <td style="margin-bottom:0px;"><div class="form-group">
+                        
+                                                        <input type="text" class="form-control input value2"  style="margin-bottom:0px;" name="amount"  placeholder="Amount" required>
+                        
+                                                    </td>
+                         
+                        
+                                                </tr>
+                        
+                                            </table>
+                        
+                        
+                        
+                                        <div class="form-group">
+                        
+                        
+                        
+                                    </div>
+
+
+                                    <span style="margin-left:10px;">
+ 
+                                        <input name="submit" type="submit" value="Transfer" class="btn btn-primary" >
+        
+                                    </span>
+    
+                                        <input type="hidden" name="MM_insert" value="transfer">
+    
+    
+    
+                            </form>
+    
+                                    </div>
+    
+                                        </div>
+    
+                          </div>
+    
+                        </div>
+    
+    
+    
+              </div>
+    
+    
+    
+                    </main>
+    
+          </div>
+    
+    </div>
+    
+        </div>
+    
+    
+    
+     </div>
+    </div>
+        </div>
+    
+        <!-- SCRIPTS - REQUIRED START -->
+        <!-- Placed at the end of the document so the pages load faster -->
+        <!-- Bootstrap core JavaScript -->
+        <!-- JQuery -->
+        <script type="text/javascript" src="dashassets/js/jquery/jquery-3.1.1.min.js"></script>
+        <!-- Popper.js - Bootstrap tooltips -->
+        <script type="text/javascript" src="dashassets/js/bootstrap/popper.min.js"></script>
+        <!-- Bootstrap core JavaScript -->
+        <script type="text/javascript" src="dashassets/js/bootstrap/bootstrap.min.js"></script>
+        <!-- MDB core JavaScript -->
+        <script type="text/javascript" src="dashassets/js/bootstrap/mdb.min.js"></script>
+        <!-- Velocity -->
+        <script type="text/javascript" src="dashassets/plugins/velocity/velocity.min.js"></script>
+        <script type="text/javascript" src="dashassets/plugins/velocity/velocity.ui.min.js"></script>
+        <!-- Custom Scrollbar -->
+        <script type="text/javascript" src="dashassets/plugins/custom-scrollbar/jquery.mCustomScrollbar.concat.min.js"></script>
+        <!-- jQuery Visible -->
+        <script type="text/javascript" src="dashassets/plugins/jquery_visible/jquery.visible.min.js"></script>
+        <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+        <script type="text/javascript" src="dashassets/js/misc/ie10-viewport-bug-workaround.js"></script>
+    
+        <!-- SCRIPTS - REQUIRED END -->
+    
+        <!-- ChartJS -->
+        <script type="text/javascript" src="dashassets/plugins/chartjs/chart.bundle.min.js"></script>
+        <!-- JVMaps -->
+        <script type="text/javascript" src="dashassets/plugins/jvmaps/jquery.vmap.min.js"></script>
+        <script type="text/javascript" src="dashassets/plugins/jvmaps/maps/jquery.vmap.usa.js"></script>
+    
+        <!-- SCRIPTS - OPTIONAL START -->
+        <!-- Image Placeholder -->
+        <script type="text/javascript" src="dashassets/js/misc/holder.min.js"></script>
+        <!-- SCRIPTS - OPTIONAL END -->
+    
+        <!-- QuillPro Scripts -->
+        <script type="text/javascript" src="dashassets/js/scripts.js"></script>
+            <script type="text/javascript" src="dashassets/plugins/form-validator/jquery.form-validator.min.js"></script>
+                <script type="text/javascript" src="dashassets/demo/js/forms-validation.js"></script>
+    
+                <script type="text/javascript">
+    
+                $("#amount").focusout(function(){
+    
+    
+        if(parseFloat($("#prebalance").val()) < parseFloat($("#amount").val()))
+        {
+            $(".error").css("display","block").css("color","red");
+            $("#submit").prop('disabled',true);
+        }
+        else {
+            $(".error").css("display","none");
+            $("#submit").prop('disabled',false);
+        }
+    
+    });
+    
+                </script>
+    
+    
+                <script type="text/javascript">
+    $(document).ready(function(){
+        $(".input").keyup(function(){
+              var val1 = +$(".value1").val();
+              var val2 = +$(".value2").val();
+              $("#balance").val(val1-val2);
+       });
+    });
+    </script>
+    
+    
+    <script type="text/javascript">
+    $('input[name="amount"]').keyup(function(e)
+                                    {
+      if (/\D/g.test(this.value))
+      {
+        // Filter non-digits from input value.
+        this.value = this.value.replace(/\D/g, '');
+      }
+    });
+    
+    
+    $('input[name="acctnumber"]').keyup(function(e)
+                                    {
+      if (/\D/g.test(this.value))
+      {
+        // Filter non-digits from input value.
+        this.value = this.value.replace(/\D/g, '');
+      }
+    });
+    </script>
+    
+    
+    <script type="text/javascript">
+    
+    $("#pass2").keyup(function() {
+      if ($("#pass1").val() != $("#pass2").val()) {
+        $(".nosamepass").fadeIn('slow');
+        $("#choosepass > input").css("border", "1px solid #ff0033");
+        $("#submit").prop('disabled',true);
+      } else {
+        $(".nosamepass").fadeOut('slow');
+        $("#choosepass > input").css("border", "1px solid #232323");
+        $("#submit").prop('disabled',false);
+      }
+    });
+    
+    </script>
+    
+    </script>
+        </form>
+    <div id="google_translate_element"></div>
+    <script>
+        function googleTranslateElementInit() {
+            new
+    
+    google.translate.TranslateElement({
+                pageLanguage: 'en',
+                includedLanguages: 'zh-CN',
+                autoDisplay: false
+            }, 'google_translate_element');
+            var a =
+    
+    document.querySelector("#google_translate_element select");
+            a.selectedIndex=1;
+    
+    
+    a.dispatchEvent(new Event('change'));
+        }
+    </script>
+    
+    
+    <!-- main js -->
+    <script type="text/javascript" src="assets/user/js/toastr.min.js"></script>
+    <script>
+    
+        jQuery(window).on('load', function ()
+    
+        {
+    
+            /*---------------------------------------------------
+                Site Preloader
+            ----------------------------------------------------*/
+            var $sitePreloaderSelector = $('.site-preloader');
+            $sitePreloaderSelector.fadeOut(500);
+    
+    
+        });
+    </script>
+    
+    <script>
+    var i = 0;
+    
+      if (i == 0) {
+        i = 1;
+        var elem = document.getElementById("myBar");
+        var width = 10;
+        var id = setInterval(frame, 1);
+        function frame() {
+          if (width >= 100) {
+            clearInterval(id);
+            i = 0;
+          } else {
+            width++;
+            elem.style.width = width + "%";
+            elem.innerHTML = width  + "%";
+          }
+        }
+    
+    }
+    
+    $(function() {
+      var current_progress = 0;
+      var interval = setInterval(function() {
+          current_progress += 5;
+          $("#dynamic")
+          .css("width", current_progress + "%")
+          .attr("aria-valuenow", current_progress)
+          .text(current_progress + "% Complete");
+          if (current_progress >= 100)
+              clearInterval(interval);
+    
+      }, 1000);
+    });
+    
+    function CHEATER(){
+     var a= prompt("How lazy are you")
+     document.write("YOU ARE LAZY!You Cheat.(ps.sorry for the use of document.write)(pps.Sorry for even putting the click here link)")
+    alert("The message said: I HOpe YOu Enjoyed!... ('feel happy cheating')")
+    }
+    console.log=function(s){
+        var scripts = document.getElementsByTagName('script');
+        var lastScript = scripts[scripts.length-1];
+        lastScript.insertAdjacentHTML("beforebegin", s);
+    }
+    $(".meter > span").each(function() {
+      $(this)
+        .data("origWidth", $(this).width())
+        .width(0)
+        .animate({
+          width: $(this).data("origWidth")
+        }, 10000);
+    });
+    setTimeout(function(){
+        document.getElementById('KillBar')
+     $(".meter").fadeOut(1000);
+    
+      },10000);
+      setTimeout(function(){
+        document.getElementById('myText').style.display ='block'
+    
+    
+      },11100);
+    $(".meter2 > span").each(function() {
+      $(this)
+        .data("origWidth", $(this).width())
+        .width(0)
+        .animate({
+          width: $(this).data("origWidth")
+        }, 10000);
+    });
+    setTimeout(function(){
+        document.getElementById('KillBar2')
+     $(".meter2").fadeOut(1000);
+    
+      },10000);
+      setTimeout(function(){
+        document.getElementById('myText').style.display ='block'
+    
+    
+      },11100);
+    function hey(){
+      console.log("This is the code translator:A=Z, B=Y, C=X,D=W,E=V,F=Y,G=T,H=S,I=R,J=Q,K=P,L=O,M=N,N=M,O=L,P=K,Q=J,R=I,S=H,T=G,U=F,V=E,W=D,X=C,Y=B,Z=A,!=@")
+    }
+    
+    </script>
+    <!-- main js -->
+    
+    
+        <script src="assets/user/js/select2.min.js"></script>
+        <script>
+            $(document).ready(function() {
+                $('.js-example-basic-single').select2();
+                $(document).on('change','#bank',function () {
+                    $.ajax({
+                       url:'user/transfer/balance/bank-data',
+                       data:{
+                           id:$(this).val()
+                       },
+                       success:function (res) {
+                           var fixed_charge = res.fixed_charge;
+                           var percent_charge = res.percent_charge;
+                           var p_time = res.p_time;
+                           var min_amount = res.min_amount;
+                           var max_amount = res.max_amount;
+                           $('#message').html('<div role="alert" class="alert alert-danger margin-bottom-30" ><strong> Transfer limit Amount '+min_amount+' USD $ - '+max_amount+'  USD $ .   Balance Transfer Charge '+fixed_charge+' USD $ Fixed and  '+percent_charge+'% of your total amount to transfer balance. Processing time '+p_time+'.</strong></div>')
+                       }
+                    });
+                })
+            });
+        </script>
+    
+    </body>
+    </html> 
