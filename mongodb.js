@@ -101,7 +101,7 @@ const UserSchema = new mongoose.Schema({
         index: true
     },
     balance: {
-        type: Number,
+        type: String,
         default: 0.00,
         required: true,
         index: true

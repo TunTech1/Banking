@@ -272,7 +272,12 @@ app.post("/domestic", async (req, res) => {
 
         // Deduct the transfer amount from the sender's balance
         sender.balance -= amount;
-        receiver.balance += amount;
+
+
+       // Add the transfer amount to the receiver's balance
+    //    receiverBalance += amount;
+
+
         await sender.save();
         await receiver.save();
 
@@ -316,6 +321,7 @@ app.post('/local', async (req, res) => {
         res.redirect('/local')
         }
 
+
         const receiver = await collection.findOne({ accountNumber: receiverAccountNumber });
 
         if (!receiver) {
@@ -335,11 +341,13 @@ app.post('/local', async (req, res) => {
         if (sender.balance < amount) {
             req.flash('error', 'Insufficient Funds');
             return res.redirect('/local')
-        }
+        } 
 
         // Deduct the transfer amount from the sender's balance
         sender.balance -= amount;
-        receiver.balance += amount;
+
+        // receiver.balance += Number(amount);
+
         await sender.save();
         await receiver.save();
 
@@ -365,7 +373,7 @@ app.post('/local', async (req, res) => {
 
 app.post("/wire", async (req, res) => {
     
-    const { senderAccountNumber, beneficiary, receiverAccountNumber, account_type, bank_name, branch_name, country, routenumber, amount, reason, pinnumber, } = req.body;
+    const { senderAccountNumber, beneficiary, receiverAccountNumber, account_type, bank_name, branch_name, country, routingNumber, amount, reason, pinnumber, } = req.body;
 
     req.session.transactionInfo = {
         senderAccountNumber,
@@ -375,7 +383,7 @@ app.post("/wire", async (req, res) => {
         bank_name,
         branch_name,
         country,
-        routenumber,
+        routingNumber,
         amount,
         reason,
         pinnumber,
@@ -393,6 +401,7 @@ app.post("/wire", async (req, res) => {
         req.flash('error', 'Authentication failed');
         return res.redirect('/wire')
         }
+               
         console.log('Sender Object:', sender);
 
         const receiver = await findReceiverByAccountNumber(receiverAccountNumber);
@@ -533,6 +542,19 @@ app.get('/index', checkAuthenticated, (req, res) => {
     });
 });
 
+app.get('/about', (req, res) => {
+    res.render("about.ejs");
+});
+
+app.get('/contactset', (req, res) => {
+    res.render("contactset.ejs");
+});
+
+app.get('/faq', (req, res) => {
+    res.render("faq.ejs");
+});
+
+
 app.get('/login', checkNotAuthenticated, (req, res) => {
     res.render("login.ejs");
 });
@@ -648,7 +670,7 @@ app.get('/preview', (req, res) => {
         amount: transactionInfo.amount,
         beneficiary: transactionInfo.beneficiary,
         receiverAccountNumber: transactionInfo.receiverAccountNumber,
-        routenumber: transactionInfo.routenumber,
+        routingNumber: transactionInfo.routingNnumber,
         bank_name: transactionInfo.bank_name,
         branch_name: transactionInfo.branch_name,
         country: transactionInfo.country,
