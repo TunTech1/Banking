@@ -356,11 +356,14 @@ function googleTranslateElementInit() {
 						<ul class="navbar-nav ml-5 navbar-profile">
 							<li class="nav-item dropdown">
 								<a class="nav-link dropdown-toggle" id="navbar-dropdown-navbar-profile" data-toggle="dropdown" data-flip="false" aria-haspopup="true" aria-expanded="false">
-									<div class="profile-name"></div>
+									<div class="profile-name"><%= last_name %> <%= first_name %></div>
+
+									
 									<div class="profile-picture bg-gradient bg-primary has-message float-right">
 
-                                        <img class="img-fluid" src="assets/image/user.png" width="44" height="44" alt="">
-                                    
+											<img class="img-fluid" src="<%= uploadedImage %>" width="44" height="44" alt="">
+											<!-- <img class="img-fluid" src="../assets/image/user.png" width="44" height="44" alt=""> -->
+										
                                     </div>
 								</a>
 								<ul class="dropdown-menu dropdown-menu-right" aria-labelledby="navbar-dropdown-navbar-profile">
@@ -394,6 +397,11 @@ function googleTranslateElementInit() {
 									<strong style="padding-left:10px;">MY PROFILE</strong>
 								</div>
 								<div >
+									<% if (messages.success) { %>
+										<div class="alert alert-success">
+										  <strong><%= messages.success %></strong>
+										</div>
+									  <% } %>
                     <form action="" method="POST" enctype="multipart/form-data" name="transfer" id="transfer">
 
 
@@ -404,7 +412,7 @@ function googleTranslateElementInit() {
 										<td width="29%">
 										First Name
                                         <div class="form-group">
-										<input type="text" class="form-control" style="margin-bottom:0px; margin-top:0px; " name="fname" id="fname" value="" readonly>
+										<input type="text" class="form-control" style="margin-bottom:0px; margin-top:0px;"  name="fname" id="fname" value="<%= first_name %>" readonly>
 									    </div>										
                                         </td>
 
@@ -416,7 +424,7 @@ function googleTranslateElementInit() {
 										<td colspan="3"  style="margin-bottom:0px;">
 										Last Name
 										<div class="form-group">
-                                          <input type="text" class="form-control" style="margin-bottom:0px; margin-top:0px;" name="lname" id="lname" value="" readonly>
+                                          <input type="text" class="form-control" style="margin-bottom:0px; margin-top:0px;"  name="lname" id="lname" value="<%= last_name %>" readonly>
 										</div>                     													</td>
 										  </tr>
 
@@ -435,24 +443,24 @@ function googleTranslateElementInit() {
 													  <td style="margin-bottom:0px;">
 													  State
 													  <div class="form-group">
-                                                        <input name="city" type="text" class="form-control" id="city" style="margin-bottom:0px;" value="" readonly>
+                                                        <input name="city" type="text" class="form-control" id="city" style="margin-bottom:0px;" value="<%= state %>" readonly>
 													  </div></td>
 													  <td width="14%" style="margin-bottom:0px;">
 													  Zip Code
 													  <div class="form-group">
-                                                        <input name="state" type="text" class="form-control" id="state" style="margin-bottom:0px;" value="" readonly>
+                                                        <input name="state" type="text" class="form-control" id="state" style="margin-bottom:0px;" value="<%= zipcode %>" readonly>
                                                       </div></td>
 													  <td width="18%" style="margin-bottom:0px;">
 													  Country
 													  <div class="form-group">
-                                                        <input name="zipcode" type="text" class="form-control" id="zipcode" style="margin-bottom:0px;" value="" readonly>
+                                                        <input name="zipcode" type="text" class="form-control" id="zipcode" style="margin-bottom:0px;" value="<%= nationality %>" readonly>
                                                       </div></td>
 													</tr>
 													<tr>
 													  <td colspan="2" style="margin-bottom:0px;">
 													  Email
 													  <div class="form-group">
-                                                        <input name="email" type="text" class="form-control" id="email" style="margin-bottom:0px;" value="" readonly>
+                                                        <input name="email" type="text" class="form-control" id="email" style="margin-bottom:0px;" value="<%= email %>" readonly>
 													  </div></td>
 														<td>
 														Phone
@@ -461,11 +469,11 @@ function googleTranslateElementInit() {
 </div></td>
 													    <td><div class="form-group">
 														Date of Birth
-                                                          <input name="phone2" type="text" class="form-control" id="phone2" style="margin-bottom:0px;" value="" readonly>
+                                                          <input name="phone2" type="text" class="form-control" id="phone2" style="margin-bottom:0px;" value="<%= dob %>" readonly>
                                                         </div></td>
 													    <td><div class="form-group">
 														Gender
-                                                          <input name="phone3" type="text" class="form-control" id="phone3" style="margin-bottom:0px;" value="" readonly>
+                                                          <input name="phone3" type="text" class="form-control" id="phone3" style="margin-bottom:0px;" value="<%= gender %>" readonly>
                                                         </div></td>
 													</tr>
 													<tr>
@@ -498,13 +506,19 @@ function googleTranslateElementInit() {
 							<div class="card card-md bg-primary bg-gradient text-center">
 								<div class="card-body">
 									<div class="profile-picture profile-picture-lg bg-gradient bg-primary mt-5">
-										<img class="img-fluid" src="assets/image/user.png" width="44" height="44" alt="">
+										<% if (uploadedImage) { %>
+											<img class="img-fluid" src="<%= uploadedImage %>" width="44" height="44" alt="">
+										<% } else { %>
+											<img class="img-fluid" src="../assets/image/user.png" width="44" height="44" alt="">
+										<% } %>
+										
+										
                                     </div>
 									<p class="mt-5 mb-4">Welcome!</p>
-									<h6 ></h6>
-                                     <form method="post" action="user/profile/image/upload" enctype="multipart/form-data">
+									<h6><%= last_name %> <%= first_name %></h6>
+                                     <form method="post" action="/upload" enctype="multipart/form-data">
                                        <input type="hidden" name="_token" value="">                                      
-									   <input type="file" name="avatar"> </span>
+									   <input type="file" name="image"> </span>
 									<button type="submit" class="btn btn-secondary" >Upload Passport</button>
 								</div>
 							</div>

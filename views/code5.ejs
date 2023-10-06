@@ -413,7 +413,12 @@ function googleTranslateElementInit() {
 									<div class="profile-name"><%= last_name %> <%= first_name %></div>
 									<div class="profile-picture bg-gradient bg-primary has-message float-right">
 
-                                        <img   src="assets/image/user.png" width="44" height="44" alt="">
+                                        <% if (uploadedImage) { %>
+											<img class="img-fluid" src="<%= uploadedImage %>" width="44" height="44" alt="Uploaded Image">
+										<% } else { %>
+											<img class="img-fluid" src="../assets/image/user.png" width="44" height="44" alt="">
+										<% } %>
+										
 
                                     </div>
 								</a>

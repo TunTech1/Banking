@@ -7,6 +7,7 @@ if (process.env.NODE_ENV !== "production") {
 // Importing libraries that we installed using npm
 const express = require ("express");
 const ejs = require ("ejs");
+const path = require ("path");
 const bodyParser = require ("body-parser");
 const app = express();
 const bcrypt = require("bcrypt");
@@ -18,6 +19,7 @@ const methodOverride = require("method-override");
 const { collection, Transaction } = require("./mongodb");
 const mongoose = require("mongoose");
 const mongoURI = process.env.MONGODB_URI;
+const multer = require("multer");
 const port = process.env.PORT || 3000;
 
 initializePassport(
@@ -25,6 +27,10 @@ initializePassport(
     email => collection.findOne({ email }), // Modify to find user by email in MongoDB
     id => collection.findOne({ _id: id }) // Modify to find user by _id in MongoDB
 )
+
+
+
+
 
 const users = []
 const wires = []
@@ -91,6 +97,21 @@ app.use(methodOverride("_method"));
 
 app.use(express.static('./monumental'));
 app.use(express.static('./dash'));
+
+
+
+const fileStorageEngine = multer.diskStorage({
+    destination: (req, file, cb) => {
+        cb(null, './monumental/assets/image')
+    },
+    filename: (req, file, cb) => {
+        cb(null, Date.now() + "--" + file.originalname);
+    },
+});
+
+const upload = multer({storage: fileStorageEngine});
+let uploadedImage = ''; // Declare uploadedImage in a higher scope
+
 
 
 
@@ -279,7 +300,7 @@ app.post("/domestic", async (req, res) => {
 
 
         await sender.save();
-        await receiver.save();
+        // await receiver.save();
 
 
         // Construct the sender's transaction description
@@ -349,7 +370,7 @@ app.post('/local', async (req, res) => {
         // receiver.balance += Number(amount);
 
         await sender.save();
-        await receiver.save();
+        // await receiver.save();
 
          // Description for sender's transaction
          const senderTransactionDescription = `Local transfer of $${amount}. to ${bank}. Account Number: ${receiver.accountNumber}`;
@@ -426,9 +447,9 @@ app.post("/wire", async (req, res) => {
 
      // Deduct the transfer amount from the sender's balance
      sender.balance -= amount;
-     receiver.balance += amount;
+    //  receiver.balance += amount;
      await sender.save();
-     await receiver.save();
+    //  await receiver.save();
 
 
      // Description for sender's transaction
@@ -520,6 +541,14 @@ app.post('/code5', async (req, res) => {
     }
 });
 
+app.post('/upload', upload.single('image'), (req, res) => {
+    console.log(req.file);
+    req.flash('success', 'Image uploaded successfully');
+    uploadedImage = '/monumental/assets/image/' + req.file.filename;
+    console.log('Uploaded Image:', uploadedImage);
+    return res.redirect('/profile');
+});
+
 
 
 // Routes
@@ -538,7 +567,8 @@ app.get('/index', checkAuthenticated, (req, res) => {
         accttype: req.user.accttype,
         balance: req.user.balance,
         currency: req.user.currency,
-        transactionHistory: req.user.transactionHistory,       
+        transactionHistory: req.user.transactionHistory,
+        uploadedImage: uploadedImage,       
     });
 });
 
@@ -568,7 +598,8 @@ app.get('/domestic', (req, res) => {
     { 
         last_name: req.user.last_name,
         first_name: req.user.first_name, 
-        accountNumber: req.user.accountNumber,   
+        accountNumber: req.user.accountNumber,
+        uploadedImage: uploadedImage,   
     });
 });
 
@@ -578,7 +609,8 @@ app.get('/local', (req, res) => {
         messages: req.flash(),
         last_name: req.user.last_name,
         first_name: req.user.first_name,
-        accountNumber: req.user.accountNumber,   
+        accountNumber: req.user.accountNumber,
+        uploadedImage: uploadedImage,   
     });
 });
 
@@ -587,7 +619,8 @@ app.get('/history', (req, res) => {
     { 
         last_name: req.user.last_name,
         first_name: req.user.first_name,
-        transactionHistory: req.user.transactionHistory,   
+        transactionHistory: req.user.transactionHistory,
+        uploadedImage: uploadedImage,   
     });
 });
 
@@ -596,8 +629,8 @@ app.get('/statement', (req, res) => {
     { 
         last_name: req.user.last_name,
         first_name: req.user.first_name,
-        transactionHistory: req.user.transactionHistory,   
-   
+        transactionHistory: req.user.transactionHistory,
+        uploadedImage: uploadedImage,     
     });
 });
 
@@ -605,7 +638,14 @@ app.get('/profile', (req, res) => {
     res.render("profile.ejs", 
     { 
         last_name: req.user.last_name,
-        first_name: req.user.first_name,   
+        first_name: req.user.first_name,
+        state: req.user.state,   
+        zipcode: req.user.zipcode,   
+        nationality: req.user.nationality,   
+        email: req.user.email,   
+        dob: req.user.dob,   
+        gender: req.user.gender, 
+        uploadedImage: uploadedImage,   
     });
 });
 
@@ -613,7 +653,8 @@ app.get('/settings', (req, res) => {
     res.render("settings.ejs", 
     { 
         last_name: req.user.last_name,
-        first_name: req.user.first_name,   
+        first_name: req.user.first_name,
+        uploadedImage: uploadedImage,   
     });
 });
 
@@ -622,7 +663,8 @@ app.get('/contact', (req, res) => {
     { 
         last_name: req.user.last_name,
         first_name: req.user.first_name,
-        email: req.user.email,   
+        email: req.user.email,
+        uploadedImage: uploadedImage,   
     });
 });
 
@@ -632,6 +674,7 @@ app.get('/wire', (req, res) => {
         last_name: req.user.last_name,
         first_name: req.user.first_name,
         accountNumber: req.user.accountNumber,
+        uploadedImage: uploadedImage,
    
     });
 });
@@ -640,7 +683,8 @@ app.get('/code3', (req, res) => {
     res.render("code3.ejs", 
     { 
         last_name: req.user.last_name,
-        first_name: req.user.first_name,   
+        first_name: req.user.first_name,
+        uploadedImage: uploadedImage,   
     });
 });
 
@@ -648,7 +692,8 @@ app.get('/code4', (req, res) => {
     res.render("code4.ejs", 
     { 
         last_name: req.user.last_name,
-        first_name: req.user.first_name,   
+        first_name: req.user.first_name,
+        uploadedImage: uploadedImage,   
     });
 });
 
@@ -656,7 +701,8 @@ app.get('/code5', (req, res) => {
     res.render("code5.ejs", 
     { 
         last_name: req.user.last_name,
-        first_name: req.user.first_name,   
+        first_name: req.user.first_name,
+        uploadedImage: uploadedImage,   
     });
 });
 

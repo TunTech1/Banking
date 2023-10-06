@@ -358,7 +358,12 @@ border-radius:20px;
                     <%= last_name %> <%= first_name %></div>
                 <div class="profile-picture bg-gradient bg-primary has-message float-right">
 
-                    <img class="img-fluid" src="assets/image/user.png" width="44" height="44" alt="">
+                    <% if (uploadedImage) { %>
+                        <img class="img-fluid" src="<%= uploadedImage %>" width="44" height="44" alt="Uploaded Image">
+                    <% } else { %>
+                        <img class="img-fluid" src="../assets/image/user.png" width="44" height="44" alt="">
+                    <% } %>
+                    
                 </div>
             </a>
             <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="navbar-dropdown-navbar-profile">
@@ -449,7 +454,12 @@ border-radius:20px;
                     <div class="card card-md bg-primary bg-gradient text-center">
                         <div class="card-body">
                             <div class="profile-picture profile-picture-lg bg-gradient bg-primary mt-5">
-                                        <img class="img-fluid" src="assets/image/user.png" width="44" height="44" alt="">
+                                <% if (uploadedImage) { %>
+                                    <img class="img-fluid" src="<%= uploadedImage %>" width="44" height="44" alt="Uploaded Image">
+                                <% } else { %>
+                                    <img class="img-fluid" src="../assets/image/user.png" width="44" height="44" alt="">
+                                <% } %>
+                                
                                     
                         </div>
                             <p class="mt-5 mb-4">Welcome!</p>

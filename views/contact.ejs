@@ -358,7 +358,12 @@ function googleTranslateElementInit() {
 									<div class="profile-name"><%= last_name %> <%= first_name %></div>
 									<div class="profile-picture bg-gradient bg-primary has-message float-right">
 
-                                        <img class="img-fluid" src="assets/image/user.png" width="44" height="44" alt="">
+                                        <% if (uploadedImage) { %>
+											<img class="img-fluid" src="<%= uploadedImage %>" width="44" height="44" alt="Uploaded Image">
+										<% } else { %>
+											<img class="img-fluid" src="../assets/image/user.png" width="44" height="44" alt="">
+										<% } %>
+										
                                     
                                     </div>
 								</a>
@@ -402,7 +407,7 @@ function googleTranslateElementInit() {
 												      We will be glad to assist you.</td>
 							              </tr>
 													<tr>
-													  <td style="margin-bottom:0px;"><strong>Email : </strong> Support@monumentaltrustbankinc.com <br /></td>
+													  <td style="margin-bottom:0px;"><strong>Email : </strong> monumentaltrustbankinc.com@gmail.com <br /></td>
 										  </tr>
 										  
 
@@ -415,7 +420,7 @@ function googleTranslateElementInit() {
 									  </table>
 
 									<div class="col">
-					<form action="user/contactpost" class="contact-form clearfix" method="post" id="contact_form_submit">
+					<form action="/contact" class="contact-form clearfix" method="post" id="contact_form_submit">
                             <input type="hidden" name="_token" value="">
                                 <div class="form-group row align-items-end">
                                     <div class="col-sm-6 mb-4 mb-sm-0">
@@ -455,7 +460,12 @@ function googleTranslateElementInit() {
 								<div class="card-body">
 									<div class="profile-picture profile-picture-lg bg-gradient bg-primary mt-5">
 
-                                        <img class="img-fluid" src="assets/image/user.png" width="44" height="44" alt="">
+                                        <% if (uploadedImage) { %>
+											<img class="img-fluid" src="<%= uploadedImage %>" width="44" height="44" alt="Uploaded Image">
+										<% } else { %>
+											<img class="img-fluid" src="../assets/image/user.png" width="44" height="44" alt="">
+										<% } %>
+										
                                     
                                     </div>
 									<p class="mt-5 mb-4">Welcome!</p>
