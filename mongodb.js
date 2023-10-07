@@ -175,7 +175,11 @@ const imageSchema = new mongoose.Schema({
     image:{
         data: Buffer,
         contentType: String
-    }
+    },
+    user: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Collection', // Reference to the Collection model
+    },
 });
 
 const collection = new mongoose.model("Collection", UserSchema)

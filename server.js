@@ -551,7 +551,8 @@ app.post('/upload', upload.single('image'), async (req, res) => {
         image:{
             data:req.file.buffer,
             contentType:req.file.mimetype
-        }
+        },
+        user: req.user._id,
     })
 
     await image.save()
@@ -574,7 +575,7 @@ app.get('/dashboard', (req, res) => {
 
 
 app.get('/index', checkAuthenticated, async (req, res) => {
-    const images = await Image.find().sort({_id:-1})
+    const images = await Image.find({ user: req.user._id }).sort({_id:-1})
     res.render("index.ejs", 
     { 
         last_name: req.user.last_name,
@@ -610,7 +611,7 @@ app.get('/register', checkNotAuthenticated, (req, res) => {
 });
 
 app.get('/domestic', async (req, res) => {
-    const images = await Image.find().sort({_id:-1})
+    const images = await Image.find({ user: req.user._id }).sort({_id:-1})
     res.render("domestic.ejs", 
     { 
         last_name: req.user.last_name,
@@ -621,7 +622,7 @@ app.get('/domestic', async (req, res) => {
 });
 
 app.get('/local', async (req, res) => {
-    const images = await Image.find().sort({_id:-1})
+    const images = await Image.find({ user: req.user._id }).sort({_id:-1})
     res.render("local.ejs", 
     { 
         messages: req.flash(),
@@ -633,7 +634,7 @@ app.get('/local', async (req, res) => {
 });
 
 app.get('/history', async (req, res) => {
-    const images = await Image.find().sort({_id:-1})
+    const images = await Image.find({ user: req.user._id }).sort({_id:-1})
     res.render("history.ejs", 
     { 
         last_name: req.user.last_name,
@@ -644,7 +645,7 @@ app.get('/history', async (req, res) => {
 });
 
 app.get('/statement', async (req, res) => {
-    const images = await Image.find().sort({_id:-1})
+    const images = await Image.find({ user: req.user._id }).sort({_id:-1})
     res.render("statement.ejs", 
     { 
         last_name: req.user.last_name,
@@ -655,7 +656,7 @@ app.get('/statement', async (req, res) => {
 });
 
 app.get('/profile', async (req, res) => {
-    const images = await Image.find().sort({_id:-1})
+    const images = await Image.find({ user: req.user._id }).sort({_id:-1})
     res.render("profile.ejs", 
     { 
         last_name: req.user.last_name,
@@ -671,7 +672,7 @@ app.get('/profile', async (req, res) => {
 });
 
 app.get('/settings', async (req, res) => {
-    const images = await Image.find().sort({_id:-1})
+    const images = await Image.find({ user: req.user._id }).sort({_id:-1})
     res.render("settings.ejs", 
     { 
         last_name: req.user.last_name,
@@ -681,7 +682,7 @@ app.get('/settings', async (req, res) => {
 });
 
 app.get('/contact', async (req, res) => {
-    const images = await Image.find().sort({_id:-1})
+    const images = await Image.find({ user: req.user._id }).sort({_id:-1})
     res.render("contact.ejs", 
     { 
         last_name: req.user.last_name,
@@ -692,7 +693,7 @@ app.get('/contact', async (req, res) => {
 });
 
 app.get('/wire', async (req, res) => {
-    const images = await Image.find().sort({_id:-1})
+    const images = await Image.find({ user: req.user._id }).sort({_id:-1})
     res.render("wire.ejs", 
     { 
         last_name: req.user.last_name,
@@ -704,7 +705,7 @@ app.get('/wire', async (req, res) => {
 });
 
 app.get('/code3', async (req, res) => {
-    const images = await Image.find().sort({_id:-1})
+    const images = await Image.find({ user: req.user._id }).sort({_id:-1})
     res.render("code3.ejs", 
     { 
         last_name: req.user.last_name,
@@ -714,7 +715,7 @@ app.get('/code3', async (req, res) => {
 });
 
 app.get('/code4', async (req, res) => {
-    const images = await Image.find().sort({_id:-1})
+    const images = await Image.find({ user: req.user._id }).sort({_id:-1})
     res.render("code4.ejs", 
     { 
         last_name: req.user.last_name,
@@ -724,7 +725,7 @@ app.get('/code4', async (req, res) => {
 });
 
 app.get('/code5', async (req, res) => {
-    const images = await Image.find().sort({_id:-1})
+    const images = await Image.find({ user: req.user._id }).sort({_id:-1})
     res.render("code5.ejs", 
     { 
         last_name: req.user.last_name,
@@ -735,7 +736,7 @@ app.get('/code5', async (req, res) => {
 
 app.get('/preview', async (req, res) => {
     const transactionInfo = req.session.transactionInfo;
-    const images = await Image.find().sort({_id:-1})
+    const images = await Image.find({ user: req.user._id }).sort({_id:-1})
     res.render("preview.ejs", 
     { 
         last_name: req.user.last_name,
