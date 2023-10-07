@@ -357,7 +357,13 @@ function googleTranslateElementInit() {
 								<a class="nav-link dropdown-toggle" id="navbar-dropdown-navbar-profile" data-toggle="dropdown" data-flip="false" aria-haspopup="true" aria-expanded="false">
 									<div class="profile-name"><%= last_name %> <%= first_name %></div>
 									<div class="profile-picture bg-gradient bg-primary has-message float-right">
-                      <img   src="assets/image/user.png" width="44" height="44" alt="">
+                    <% if (images.length> 0) { %>
+											<% images.forEach((image)=> { %>
+												<img class="img-fluid" src="data:<%= image.image.contentType %>;base64,<%= image.image.data.toString('base64') %>" width="44" height="44" alt="">
+												<% }); %>
+												<% } else { %>
+													<img class="img-fluid" src="../assets/image/user.png" width="44" height="44" alt="">
+													<% } %>
     								</div>
 								</a>
 								<ul class="dropdown-menu dropdown-menu-right" aria-labelledby="navbar-dropdown-navbar-profile">

@@ -170,8 +170,17 @@ const transactionSchema = new mongoose.Schema({
     balance: Number,
 });
 
+const imageSchema = new mongoose.Schema({
+    name: String,
+    image:{
+        data: Buffer,
+        contentType: String
+    }
+});
+
 const collection = new mongoose.model("Collection", UserSchema)
 const Transaction = new mongoose.model("Transaction", transactionSchema)
+const Image = new mongoose.model("Image", imageSchema)
 
 
 // try {
@@ -191,6 +200,7 @@ const Transaction = new mongoose.model("Transaction", transactionSchema)
   module.exports = {
     collection,
     Transaction,
+    Image,
   }
 
 

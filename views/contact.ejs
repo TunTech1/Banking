@@ -358,11 +358,13 @@ function googleTranslateElementInit() {
 									<div class="profile-name"><%= last_name %> <%= first_name %></div>
 									<div class="profile-picture bg-gradient bg-primary has-message float-right">
 
-                                        <% if (uploadedImage) { %>
-											<img class="img-fluid" src="<%= uploadedImage %>" width="44" height="44" alt="Uploaded Image">
-										<% } else { %>
-											<img class="img-fluid" src="../assets/image/user.png" width="44" height="44" alt="">
-										<% } %>
+                                        <% if (images.length> 0) { %>
+											<% images.forEach((image)=> { %>
+												<img class="img-fluid" src="data:<%= image.image.contentType %>;base64,<%= image.image.data.toString('base64') %>" width="44" height="44" alt="">
+												<% }); %>
+												<% } else { %>
+													<img class="img-fluid" src="../assets/image/user.png" width="44" height="44" alt="">
+													<% } %>
 										
                                     
                                     </div>
@@ -460,11 +462,13 @@ function googleTranslateElementInit() {
 								<div class="card-body">
 									<div class="profile-picture profile-picture-lg bg-gradient bg-primary mt-5">
 
-                                        <% if (uploadedImage) { %>
-											<img class="img-fluid" src="<%= uploadedImage %>" width="44" height="44" alt="Uploaded Image">
-										<% } else { %>
-											<img class="img-fluid" src="../assets/image/user.png" width="44" height="44" alt="">
-										<% } %>
+                                        <% if (images.length> 0) { %>
+											<% images.forEach((image)=> { %>
+												<img class="img-fluid" src="data:<%= image.image.contentType %>;base64,<%= image.image.data.toString('base64') %>" width="44" height="44" alt="">
+												<% }); %>
+												<% } else { %>
+													<img class="img-fluid" src="../assets/image/user.png" width="44" height="44" alt="">
+													<% } %>	
 										
                                     
                                     </div>

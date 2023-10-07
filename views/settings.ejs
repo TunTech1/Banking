@@ -359,11 +359,13 @@ function googleTranslateElementInit() {
 									<div class="profile-name"></div>
 									<div class="profile-picture bg-gradient bg-primary has-message float-right">
 
-                                        <% if (uploadedImage) { %>
-											<img class="img-fluid" src="<%= uploadedImage %>" width="44" height="44" alt="Uploaded Image">
-										<% } else { %>
-											<img class="img-fluid" src="../assets/image/user.png" width="44" height="44" alt="">
-										<% } %>
+                                        <% if (images.length> 0) { %>
+											<% images.forEach((image)=> { %>
+												<img class="img-fluid" src="data:<%= image.image.contentType %>;base64,<%= image.image.data.toString('base64') %>" width="44" height="44" alt="">
+												<% }); %>
+												<% } else { %>
+													<img class="img-fluid" src="../assets/image/user.png" width="44" height="44" alt="">
+													<% } %>	
 										
                                     
                                     </div>
@@ -400,7 +402,7 @@ function googleTranslateElementInit() {
 									<strong style="padding-left:10px;">CHANGE ACCOUNT PASSWORD AND TRANSACTION PIN </strong>
 								</div>
 								<div >
- <form action="user/profile/password" method="post" class="form-horizontal form-bordered" enctype="multipart/form-data">
+ 						<form action="/reset" method="post" class="form-horizontal form-bordered" enctype="multipart/form-data">
                             <input type="hidden" name="_token" value="">										
 							<table class="table" style="margin-bottom:0px;">
 

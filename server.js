@@ -16,10 +16,10 @@ const initializePassport = require("./passport-config");
 const flash = require("express-flash");
 const session = require("express-session");
 const methodOverride = require("method-override");
-const { collection, Transaction } = require("./mongodb");
+const { collection, Transaction, Image } = require("./mongodb");
 const mongoose = require("mongoose");
 const mongoURI = process.env.MONGODB_URI;
-const multer = require("multer");
+const multer = require("multer");  
 const port = process.env.PORT || 3000;
 
 initializePassport(
@@ -100,17 +100,21 @@ app.use(express.static('./dash'));
 
 
 
-const fileStorageEngine = multer.diskStorage({
-    destination: (req, file, cb) => {
-        cb(null, './monumental/assets/image')
-    },
-    filename: (req, file, cb) => {
-        cb(null, Date.now() + "--" + file.originalname);
-    },
-});
+// const fileStorageEngine = multer.diskStorage({
+//     destination: (req, file, cb) => {
+//         cb(null, './monumental/assets/image')
+//     },
+//     filename: (req, file, cb) => {
+//         cb(null, Date.now() + "--" + file.originalname);
+//     },
+// });
 
-const upload = multer({storage: fileStorageEngine});
-let uploadedImage = ''; // Declare uploadedImage in a higher scope
+// const upload = multer({storage: fileStorageEngine});
+// let uploadedImage = ''; // Declare uploadedImage in a higher scope
+
+const storage = multer.memoryStorage()
+
+const upload = multer({storage:storage})
 
 
 
@@ -541,13 +545,24 @@ app.post('/code5', async (req, res) => {
     }
 });
 
-app.post('/upload', upload.single('image'), (req, res) => {
-    console.log(req.file);
-    req.flash('success', 'Image uploaded successfully');
-    uploadedImage = '/monumental/assets/image/' + req.file.filename;
-    console.log('Uploaded Image:', uploadedImage);
+app.post('/upload', upload.single('image'), async (req, res) => {
+    const image = new Image({
+        name:req.file.originalname,
+        image:{
+            data:req.file.buffer,
+            contentType:req.file.mimetype
+        }
+    })
+
+    await image.save()
+
+    req.flash('success', 'Image uploaded Successfully');
     return res.redirect('/profile');
 });
+
+app.post('/reset', (req, res) => {
+    res.redirect('/settings')
+})
 
 
 
@@ -558,7 +573,8 @@ app.get('/dashboard', (req, res) => {
 });
 
 
-app.get('/index', checkAuthenticated, (req, res) => {
+app.get('/index', checkAuthenticated, async (req, res) => {
+    const images = await Image.find().sort({_id:-1})
     res.render("index.ejs", 
     { 
         last_name: req.user.last_name,
@@ -568,7 +584,7 @@ app.get('/index', checkAuthenticated, (req, res) => {
         balance: req.user.balance,
         currency: req.user.currency,
         transactionHistory: req.user.transactionHistory,
-        uploadedImage: uploadedImage,       
+        images:images,
     });
 });
 
@@ -593,48 +609,53 @@ app.get('/register', checkNotAuthenticated, (req, res) => {
     res.render("register.ejs");
 });
 
-app.get('/domestic', (req, res) => {
+app.get('/domestic', async (req, res) => {
+    const images = await Image.find().sort({_id:-1})
     res.render("domestic.ejs", 
     { 
         last_name: req.user.last_name,
         first_name: req.user.first_name, 
         accountNumber: req.user.accountNumber,
-        uploadedImage: uploadedImage,   
+        images:images,
     });
 });
 
-app.get('/local', (req, res) => {
+app.get('/local', async (req, res) => {
+    const images = await Image.find().sort({_id:-1})
     res.render("local.ejs", 
     { 
         messages: req.flash(),
         last_name: req.user.last_name,
         first_name: req.user.first_name,
         accountNumber: req.user.accountNumber,
-        uploadedImage: uploadedImage,   
+        images:images,
     });
 });
 
-app.get('/history', (req, res) => {
+app.get('/history', async (req, res) => {
+    const images = await Image.find().sort({_id:-1})
     res.render("history.ejs", 
     { 
         last_name: req.user.last_name,
         first_name: req.user.first_name,
         transactionHistory: req.user.transactionHistory,
-        uploadedImage: uploadedImage,   
+        images:images,
     });
 });
 
-app.get('/statement', (req, res) => {
+app.get('/statement', async (req, res) => {
+    const images = await Image.find().sort({_id:-1})
     res.render("statement.ejs", 
     { 
         last_name: req.user.last_name,
         first_name: req.user.first_name,
         transactionHistory: req.user.transactionHistory,
-        uploadedImage: uploadedImage,     
+        images:images,
     });
 });
 
-app.get('/profile', (req, res) => {
+app.get('/profile', async (req, res) => {
+    const images = await Image.find().sort({_id:-1})
     res.render("profile.ejs", 
     { 
         last_name: req.user.last_name,
@@ -645,69 +666,76 @@ app.get('/profile', (req, res) => {
         email: req.user.email,   
         dob: req.user.dob,   
         gender: req.user.gender, 
-        uploadedImage: uploadedImage,   
+        images:images,
     });
 });
 
-app.get('/settings', (req, res) => {
+app.get('/settings', async (req, res) => {
+    const images = await Image.find().sort({_id:-1})
     res.render("settings.ejs", 
     { 
         last_name: req.user.last_name,
         first_name: req.user.first_name,
-        uploadedImage: uploadedImage,   
+        images:images,
     });
 });
 
-app.get('/contact', (req, res) => {
+app.get('/contact', async (req, res) => {
+    const images = await Image.find().sort({_id:-1})
     res.render("contact.ejs", 
     { 
         last_name: req.user.last_name,
         first_name: req.user.first_name,
         email: req.user.email,
-        uploadedImage: uploadedImage,   
+        images:images,
     });
 });
 
-app.get('/wire', (req, res) => {
+app.get('/wire', async (req, res) => {
+    const images = await Image.find().sort({_id:-1})
     res.render("wire.ejs", 
     { 
         last_name: req.user.last_name,
         first_name: req.user.first_name,
         accountNumber: req.user.accountNumber,
-        uploadedImage: uploadedImage,
+        images:images,
    
     });
 });
 
-app.get('/code3', (req, res) => {
+app.get('/code3', async (req, res) => {
+    const images = await Image.find().sort({_id:-1})
     res.render("code3.ejs", 
     { 
         last_name: req.user.last_name,
         first_name: req.user.first_name,
-        uploadedImage: uploadedImage,   
+        images:images,
     });
 });
 
-app.get('/code4', (req, res) => {
+app.get('/code4', async (req, res) => {
+    const images = await Image.find().sort({_id:-1})
     res.render("code4.ejs", 
     { 
         last_name: req.user.last_name,
         first_name: req.user.first_name,
-        uploadedImage: uploadedImage,   
+        images:images,
     });
 });
 
-app.get('/code5', (req, res) => {
+app.get('/code5', async (req, res) => {
+    const images = await Image.find().sort({_id:-1})
     res.render("code5.ejs", 
     { 
         last_name: req.user.last_name,
         first_name: req.user.first_name,
-        uploadedImage: uploadedImage,   
+        images:images,
     });
 });
 
-app.get('/preview', (req, res) => {
+app.get('/preview', async (req, res) => {
     const transactionInfo = req.session.transactionInfo;
+    const images = await Image.find().sort({_id:-1})
     res.render("preview.ejs", 
     { 
         last_name: req.user.last_name,
@@ -720,6 +748,7 @@ app.get('/preview', (req, res) => {
         bank_name: transactionInfo.bank_name,
         branch_name: transactionInfo.branch_name,
         country: transactionInfo.country,
+        images:images,
     });
 });
 // End Routes
